@@ -38,7 +38,7 @@ def send_js(path):
 
 @app.route('/tap')
 def tap():
-    return tap1.get()
+    return landingTap.get()
 
 @app.route('/tap')
 def confirmation():
