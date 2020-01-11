@@ -37,21 +37,21 @@ def send_js(path):
 # Begin send HTML file via route
 
 @app.route('/tap')
-def tap():
+def tap_route():
     return landingTap.get()
 
 @app.route('/confirmation')
-def confirmation():
+def confirmation_route():
     return confirmation.get()
 
 @app.route('/status')
-def lineStatus():
+def lineStatus_route():
     return lineStatus.get()
 
 @app.route('/payment')
-def payment():
+def payment_route():
     return payment.get()
 
 @app.route('/services')
-def services():
+def services_route():
     return services.get()
