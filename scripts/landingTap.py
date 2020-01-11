@@ -15,9 +15,9 @@ class NameForm(FlaskForm):
     last_name = StringField('Last Name', validators=[DataRequired()])
 
 class PhoneNumberForm(FlaskForm):
-    country_code = IntegerField('Country Code', validators=[DataRequired()])
-    area_code = IntegerField('Area Code', validators=[DataRequired()])
-    number = IntegerField('Number', validators=[DataRequired()])
+    country_code = IntegerField('Country Code', validators=[DataRequired(),InputRequired(message="Please enter only numbers.")])
+    area_code = IntegerField('Area Code', validators=[DataRequired(), InputRequired(message="Please enter only numbers.")])
+    number = IntegerField('Number', validators=[DataRequired()], InputRequired(message="Please enter only numbers."))
 
 class EnterQueueForm(FlaskForm):
     full_name = FormField(NameForm)
