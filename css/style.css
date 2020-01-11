@@ -12,14 +12,21 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
-/* Round corners of all children elements*/
+/* Default rounded corners of all children elements*/
 body * {
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 button {
     background-color: #272727;
     color: white;
+}
+
+button:active, button:focus {
+    background-color: white;
+    color: #272727;
+    border-color: #272727;
+    border-width: 2px;
 }
 
 /* Default color on click and filled form elements (from black text) is a muted grey currently */
@@ -31,5 +38,18 @@ a:visited, form::placeholder {
 .defaultYellow {
     background-color: #ffd009;
     color: black;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* Automatically center child elements of a card */
+.card > {
+    margin: auto;
 }
 
