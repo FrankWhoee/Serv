@@ -2,21 +2,20 @@
 {% block content %}
 
 <!--CONTENT-->
-<img src="./img/icon.png" alt="Serv Logo">
 <h1>Sign In</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            {{ form.first_name.label }} <br>
-            {{ form.first_name(size=32) }}<br>
-            {% for error in form.first_name.errors %}
+            {{ form.full_name.first_name.label }} <br>
+            {{ form.full_name.first_name(size=32) }}<br>
+            {% for error in form.full_name.first_name.errors %}
             <span style="color: red;">[{{error}}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.last_name.label }} <br>
-            {{ form.last_name(size=32) }} <br>
-            {% for error in form.last_name.errors %}
+            {{ form.full_name.last_name.label }} <br>
+            {{ form.full_name.last_name(size=32) }} <br>
+            {% for error in form.full_name.last_name.errors %}
             <span style="color: red;">[{{error}}]</span>
             {% endfor %}
         </p>
