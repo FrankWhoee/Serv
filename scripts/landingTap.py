@@ -5,12 +5,30 @@ import datetime
 import time
 from flask import Flask, request, render_template, send_from_directory, session, flash, redirect
 from flask_wtf import FlaskForm
-from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField
+from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField, IntegerField, FormField
 from wtforms.validators import DataRequired
 from os import environ
 from app import *
 
-@app.route("/tap")
-def landingTap_req():
+class NameForm(FlaskForm):
+    first_name = StringField('First Name', validators=[DataRequired()])
+    last_name = StringField('Last Name', validators=[DataRequired()])
 
-    return render_template("landingTap.html")
+class PhoneNumberForm(FlaskForm):
+    country_code = IntegerField('Country Code', validators=[DataRequired()])
+    area_code = IntegerField('Area Code', validators=[DataRequired()])
+    number = IntegerField('Number', validators=[DataRequired()])
+
+class EnterQueueForm(FlaskForm):
+    full_name = FormField(NameForm)
+    phone_number = FormField(PhoneNumberForm)
+    submit = SubmitField('Enter Queue')
+
+@app.route("/tap", methods=['GET', 'POST'])
+def landingTap_req_get():
+    form = EnterQueueForm()
+    if form.validate_on_submit():
+        flash('Login requested for user {}, phone number {}'.format(
+            form.full_name.data, form.phone_number.data))
+        return redirect(url_for('index'))
+    return render_template("landingTap.html", form=form)
