@@ -8,7 +8,7 @@ from flask_wtf import FlaskForm
 from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 from os import environ
-from scripts import confirmation, lineStatus, payment, services, tap1
+from scripts import confirmation, lineStatus, payment, services, landingTap
 
 app = Flask(__name__)
 if __name__ == '__main__':

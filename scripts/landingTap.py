@@ -11,4 +11,4 @@ from os import environ
 
 def get():
 
-    return render_template("tap1.html")
+    return render_template("landingTap.html")
