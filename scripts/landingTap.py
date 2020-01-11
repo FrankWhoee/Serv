@@ -6,7 +6,7 @@ import time
 from flask import Flask, request, render_template, send_from_directory, session, flash, redirect
 from flask_wtf import FlaskForm
 from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField, IntegerField, FormField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, InputRequired
 from os import environ
 from app import *
 
@@ -15,9 +15,9 @@ class NameForm(FlaskForm):
     last_name = StringField('Last Name', validators=[DataRequired()])
 
 class PhoneNumberForm(FlaskForm):
-    country_code = IntegerField('Country Code', validators=[DataRequired(),InputRequired(message="Please enter only numbers.")])
-    area_code = IntegerField('Area Code', validators=[DataRequired(), InputRequired(message="Please enter only numbers.")])
-    number = IntegerField('Number', validators=[DataRequired()], InputRequired(message="Please enter only numbers."))
+    country_code = IntegerField('Country Code', validators=[DataRequired(),InputRequired()])
+    area_code = IntegerField('Area Code', validators=[DataRequired(), InputRequired()])
+    number = IntegerField('Number', validators=[DataRequired(), InputRequired()])
 
 class EnterQueueForm(FlaskForm):
     full_name = FormField(NameForm)
