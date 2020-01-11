@@ -11,7 +11,7 @@ from os import environ
 from app import *
 
 class NameForm(FlaskForm):
-    first_name = StringField('First Name', validators=[DataRequired()])
+    first_name = StringField('Name', validators=[DataRequired()])
     last_name = StringField('Last Name', validators=[DataRequired()])
 
 class PhoneNumberForm(FlaskForm):
