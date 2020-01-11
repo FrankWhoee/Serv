@@ -8,7 +8,9 @@ from flask_wtf import FlaskForm
 from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 from os import environ
+from app import *
 
-def get():
+@app.route("/tap")
+def landingTap_req():
 
     return render_template("landingTap.html")

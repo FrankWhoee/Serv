@@ -8,6 +8,8 @@ from flask_wtf import FlaskForm
 from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 from os import environ
+from app import *
 
-def get():
-    return 0
+@app.route("/status")
+def lineStatus_req():
+    return render_template("lineStatus.html")
