@@ -40,18 +40,18 @@ def send_js(path):
 def tap():
     return landingTap.get()
 
-@app.route('/tap')
+@app.route('/confirmation')
 def confirmation():
     return confirmation.get()
 
-@app.route('/tap')
+@app.route('/status')
 def lineStatus():
     return lineStatus.get()
 
-@app.route('/tap')
+@app.route('/payment')
 def payment():
     return payment.get()
 
-@app.route('/tap')
+@app.route('/services')
 def services():
     return services.get()
