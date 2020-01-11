@@ -8,6 +8,8 @@ from flask_wtf import FlaskForm
 from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 from os import environ
+from app import *
 
-def get():
+@app.route("/confirmation")
+def confirmation_req():
     return 0
