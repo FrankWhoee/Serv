@@ -10,6 +10,12 @@ from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 from os import environ
 
+if not os.path.isfile("serv-533d3903da02.json"):
+    f = open("serv-533d3903da02.json",'w')
+    f.write(environ['serviceData'])
+    f.close()
+
+
 db = firestore.Client(project="serv-91a70")
 # db = firestore.Client(project="serv-533d3903da02.json")
 
