@@ -220,7 +220,6 @@ form {
 }
 
 #party-size {
-    padding-left: 10px;
     width: 30%;
     float: right;
 }
@@ -269,14 +268,22 @@ form {
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 /* Specific to lineStatus  ====================================================== */
 
-#cancel-button {
-    width: 40%;
-    float: left;
+@media (min-device-width : 768px) {
+    #cancel-button {
+        width: 40%;
+        float: left;
+    }
+    
+    #confirm-button {
+        float: right;
+        width: 55%;
+    }
 }
 
-#confirm-button {
-    float: right;
-    width: 55%;
+@media (max-device-width: 768px) {
+    #cancel-button {  
+        margin-bottom: 10px;
+    }
 }
 
 .status-image {
