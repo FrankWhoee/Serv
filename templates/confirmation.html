@@ -1,39 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<div style="height: 20vh;" class="px-5">
-    <div class="row row-center-vertical" style="height: 25%">
-        <div class="container py-5 text-center">
-            <span style="font-family:verdana;font: size 15px">
-                <h3>Please proceed to your venue.<br>Your reservation will be held until the timer hits 0.</h3>
-            </span>
-            <span style="font-family:verdana;font: size 15px">
-                <span id="reservationTimeoutId" hidden>{{ reservationTimeout }}</span>
-            </span>
+<div style="text-align: center;" width=50px>
+    <body>
+        <p><b>It's your turn!</b></p>
+        <p>When you arrive, please press the button below.</p>            </span>
+    </body>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-wrapper">
+            {{ form.submit(class_="form-button") }}
         </div>
-    </div>
-</div>
-
-<div style="height: 20vh;" class="px-5">
-    <script>
-        var reservationTimeoutTime = document.getElementById("reservationTimeoutId").innerHTML;
-        document.getElementById("reservationTimeoutId").innerHTML = reservationTimeoutTime;
-    </script>
-    <div class="row row-center-vertical" style="height: 25%">
-        <div class="container py-5 text-center">
-            <span style="font-family:verdana;font-size:30px">
-                <script language="JavaScript">
-                    TargetDate = new Date().valueOf() + 0*60000 + reservationTimeoutTime*1000;
-                    BackColor = "white";
-                    ForeColor = "black";
-                    CountActive = true;
-                    CountStepper = -1;
-                    LeadingZero = true;
-                    DisplayFormat = "%%M%% Minutes, %%S%% Seconds.";
-                    FinishMessage = "Your reservation has been cancelled.";
-                </script>
-                <script language="JavaScript" src="../assets/js/countdown.js"></script>
-            </span>
-        </div>
-    </div>
+    </form>
 </div>
 {% endblock %}
