@@ -12,6 +12,10 @@
     width: 10vw;
 }
 
+b {
+    font-weight: 700;
+}
+
 body {
     background-color: var(--light-gray);
     color: black;
@@ -45,16 +49,6 @@ input:focus {
     outline: none;
 }
 
-button, .button {
-    background-color: var(--yellow);
-    color: black;
-}
-
-button:active, button:focus {
-    background-color: white;
-    border-color: var(--yellow);
-    border-width: 2px;
-}
 
 /* Default color on click and filled form elements (from black text) is a muted grey currently */
 a:visited, form::placeholder {
@@ -92,10 +86,15 @@ form {
     color: var(--dark-gray);
 }
 
-.form-wrapper label:[type="select"] {
-    color: red;
+button, .button {
+    background-color: var(--yellow);
+    color: black;
+    text-align: center;
+    align-items: center;
 }
 
-.redboi {
-    color: red;
+button:active, button:focus, .button:active, .button:focus {
+    background-color: white;
+    border-color: var(--yellow);
+    border-width: 2px;
 }
