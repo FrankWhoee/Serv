@@ -19,6 +19,12 @@ body {
     font-weight: 200;
 }
 
+/* Default rounded corners of all children elements*/
+body * {
+    border-radius: 10px;
+    border: none;
+}
+
 footer {
     width: 100%;
     padding-top: 20px;
@@ -26,10 +32,12 @@ footer {
     align-items: center;
 }
 
-/* Default rounded corners of all children elements*/
-body * {
-    border-radius: 10px;
-    border: none;
+footer * {
+    border-radius: 0;
+}
+
+span {
+    font-weight: 100;
 }
 
 /* Removes focus border */
@@ -37,10 +45,9 @@ input:focus {
     outline: none;
 }
 
-button {
+button, .button {
     background-color: var(--yellow);
     color: black;
-    width: 50%;
 }
 
 button:active, button:focus {
@@ -61,23 +68,33 @@ form {
     width: 60%;
 }
 
+.form-wrapper {
+    padding-bottom: 20px;
+}
+
+.form-wrapper input, label {    
+    font-family: 'Zilla Slab', serif;
+    text-align: left;
+    font-size: 15px;
+    width: 100%;
+}
+
 .form-wrapper input {
     box-shadow: 0px 5px 15px #00000029;
     border-radius: 10px;
     height: 50px;
     font-size: 15px;
-    opacity: 1;
     padding: 10px;
-    width: 100%;
 }
 
 .form-wrapper label {
     display: block;
-    text-align: left;
     color: var(--dark-gray);
 }
 
-.form-wrapper 
+.form-wrapper label:[type="select"] {
+    color: red;
+}
 
 .redboi {
     color: red;
