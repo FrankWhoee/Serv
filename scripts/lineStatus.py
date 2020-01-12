@@ -19,13 +19,13 @@ services_list = db.collection(u'services')
 def lineStatus_req():
     serviceID = request.args['service_id']
     customerID = request.args['customer_id']
-    waitedTime = services_list.document(serviceID).to_dict()[customerID]
+    waitedTime = services_list.document(serviceID).get().to_dict()[customerID]
 
-    return render_template("lineStatus.html", avgTime="4:20", waitedTime="2:00", place=5)
+    return render_template("lineStatus.html", avgTime="4:20", waitedTime=waitedTime, place=getPlace(serviceID,customerID))
 
 
 def getPlace(serviceID, customerID):
-    customers = services_list.document(serviceID).to_dict()
+    customers = services_list.document(serviceID).get().to_dict()
     temp = []
     for user in customers.keys():
         customers['id'] = user
