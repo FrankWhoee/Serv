@@ -13,8 +13,8 @@ from os import environ
 from app import *
 
 class LogInForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired(),InputRequired(), Email()], render_kw={"placeholder": "required"})
-    password = PasswordField("Password", validators=[DataRequired()], render_kw={"placeholder": "required"})
+    email = StringField("email", validators=[DataRequired(),InputRequired(), Email()], render_kw={"placeholder": "required"})
+    password = PasswordField("password", validators=[DataRequired()], render_kw={"placeholder": "required"})
     submit = SubmitField('continue 🡆')
 
 @app.route('/mLogIn', methods=["GET", "POST"])

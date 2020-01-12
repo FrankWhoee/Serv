@@ -14,7 +14,7 @@ from app import *
 services_list = db.collection(u'services')
 
 class ConfirmationForm(FlaskForm):
-    submit = SubmitField('I\'m here!')
+    submit = SubmitField('i\'m here!')
 
 @app.route("/confirmation", methods=['GET','POST'])
 def confirmation_req():
