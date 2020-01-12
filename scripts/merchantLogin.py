@@ -27,7 +27,7 @@ def merchantLogin_req_get():
                 # return redirect("/tap?service_id=71")
                 service_id = service.id
                 session['email'] = form.email.data
-                return redirect("/mgmt?service_id="+service_id)
+                return redirect("/mAirtable?service_id="+service_id)
         return render_template("merchantLogin.html", form=form)
     return render_template("merchantLogin.html", form=form)
         
