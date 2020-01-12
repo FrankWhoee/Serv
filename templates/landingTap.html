@@ -2,20 +2,25 @@
 {% block content %}
 
 <!--CONTENT-->
-<div class="card">
-    <h1 class="defaultYellow">Sign In</h1>
-        <form action="" method="post" novalidate>
-            {{ form.hidden_tag() }}
+<div style="text-align: center;">
+    <span><b>Line up</b> with name and phone number.</span>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
         <p>
             {{ form.name.label }} <br>
-            {{ form.name(size=32) }}<br>
+            {{ form.name(size=16) }}<br>
+            {% for error in form.name.errors %}
+            <span style="color: red;">[{{error}}]</span>
+            {% endfor %}
+            {{ form.party_size.label }} <br>
+            {{ form.party_size(size=16) }}<br>
             {% for error in form.name.errors %}
             <span style="color: red;">[{{error}}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form.phone_number.label }} <br>
-            {{ form.phone_number(size=32) }}<br>
+            {{ form.phone_number(size=16) }}<br>
             {% for error in form.phone_number.errors %}
             <span style="color: red;">[{{error}}]</span>
             {% endfor %}
@@ -23,5 +28,6 @@
         <p>{{ form.submit() }}</p>
     </form>
 </div>
+
 
 {% endblock %}
