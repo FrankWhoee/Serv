@@ -4,7 +4,10 @@
 <div class="container text-center">
     <h1>Check your phone for a verification code.</h1>
     <form action="" method="post" novalidate>
-        {{ form.csrf_token }}
+        {{ form.hidden_tag()}}
+        {% if form.errors|length > 0 %}
+            <span class="form-error">that code didn't work. please <b>try again</b>.</span>
+        {% endif %}
         <div class="form-wrapper">
             {{ form.code.label }}
             {{ form.code }}

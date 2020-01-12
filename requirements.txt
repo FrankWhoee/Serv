@@ -46,3 +46,4 @@ uritemplate==3.0.1
 urllib3==1.25.7
 Werkzeug==0.16.0
 WTForms==2.2.1
+jsonschema=3.2.0
