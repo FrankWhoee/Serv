@@ -5,7 +5,8 @@
     <h1>Tap or Scan a Serv sticker to start.</h1>
     <h3>Or</h3>
     <h1>Login</h1>
-    <form>
+    <form action="" method="post" novalidate>
+        {{ form.csrf_token }}
         <p>Phone Number</p>
         {{ form.phone }}
         {{ form.submit }}
