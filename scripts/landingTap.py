@@ -33,12 +33,14 @@ def landingTap_req_get():
             numCustomers = numCustomers + 1
         newData = {
             u'name'  : form.name.data,
-            u'enqueue_time' : int(time.time()),
+            u'enqueue_time' : time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(time.time()))),
             u'phone_number' : str(form.phone_number.data),
             u'party_size' : form.party_size.data,
             u'customer_id' : numCustomers,
             u'vericode': -1,
         }
+
+        time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(1347517370))
 
 
         headers = {
@@ -46,7 +48,7 @@ def landingTap_req_get():
             'Content-Type': 'application/json',
         }
 
-        data = '{\n  "records": [\n    {\n      "fields": {\n        "customer_id": "'+str(numCustomers)+'",\n        "party_size": "'+str(form.party_size.data)+'",\n        "phone_number": "'+str(form.phone_number.data)+'",\n        "name": "'+form.name.data+'",\n        "enqueue_time": "'+str(int(time.time()))+'",\n  "vericode": "-1"\n      }\n    }]\n}'
+        data = '{\n  "records": [\n    {\n      "fields": {\n        "customer_id": "'+str(numCustomers)+'",\n        "party_size": "'+str(form.party_size.data)+'",\n        "phone_number": "'+str(form.phone_number.data)+'",\n        "name": "'+form.name.data+'",\n        "enqueue_time": "'+time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(time.time())))+'",\n  "vericode": "-1"\n      }\n    }]\n}'
 
         response = requests.post('https://api.airtable.com/v0/appbnu6z63Rg9Dno0/'+serviceID, headers=headers, data=data)
 

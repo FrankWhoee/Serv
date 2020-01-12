@@ -4,9 +4,12 @@
 <div class="container text-center">
     <div style="text-align: center;" width=50px>
         <form action="" method="post" novalidate>
-            <div class="form-wrapper">
-                {{ form.csrf_token }}
-            </div>
+            {{ form.csrf_token }}
+            {% if form.errors|length > 0 %}
+                <span class="form-error">that number didn't work. please <b>try again</b></span>
+            {% endif %}
+            <br>
+            <br>
             <div class="form-wrapper">
                 {{ form.phone.label }}
                 {{ form.phone }}
