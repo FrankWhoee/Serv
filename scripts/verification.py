@@ -32,6 +32,7 @@ class veriForm(FlaskForm):
         user = services_list.document(serviceID).collection("customers").document(customerID)
         if user.get().to_dict()['vericode'] == userSubmittedCode and userSubmittedCode != -1:
             print("success")
+            session['phone'] = user.get().to_dict()['phone_number']
         else:
             print("other")
             raise ValidationError("other issues")
