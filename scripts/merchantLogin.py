@@ -11,11 +11,14 @@ from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired, InputRequired, Email
 from os import environ
 from app import *
+from wtforms import ValidationError
 
 class LogInForm(FlaskForm):
     email = StringField("email", validators=[DataRequired(),InputRequired(), Email()], render_kw={"placeholder": "required"})
     password = PasswordField("password", validators=[DataRequired()], render_kw={"placeholder": "required"})
     submit = SubmitField('continue 🡆')
+    services = db.collection(u'services').stream()
+
 
 @app.route('/mLogIn', methods=["GET", "POST"])
 def merchantLogin_req_get():
@@ -28,6 +31,7 @@ def merchantLogin_req_get():
                 service_id = service.id
                 session['email'] = form.email.data
                 return redirect("/mAirtable?service_id="+service_id)
+        form.submit.errors.append('merchant error')
         return render_template("merchantLogin.html", form=form)
     return render_template("merchantLogin.html", form=form)
         
