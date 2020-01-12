@@ -26,7 +26,7 @@
             {{ form.phone_number.label }}
             {{ form.phone_number}}
         </div>
-        <p>{{ form.submit() }}</p>
+        <div class="form-wrapper">{{ form.submit(class_="form-button")}}</div>
     </form>
 </div>
 {% endblock %}
