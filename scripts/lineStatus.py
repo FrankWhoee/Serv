@@ -25,7 +25,10 @@ def lineStatus_req():
     customerID = request.args['customer_id']
     print(customerID)
     print(serviceID)
-    user = services_list.document(serviceID).collection("customers").document(customerID).get().to_dict()
+    try:
+        user = services_list.document(serviceID).collection("customers").document(customerID).get().to_dict()
+    except:
+        return redirect("/")
     waitedTime = int(time.time()) - int(user['enqueue_time'])
     waitedTime = str(datetime.timedelta(seconds=waitedTime))
     print(waitedTime)
