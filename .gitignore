@@ -105,6 +105,7 @@ celerybeat.pid
 .env
 .venv
 env/
+serv-env/
 venv/
 ENV/
 env.bak/
@@ -131,6 +132,4 @@ dmypy.json
 
 # Other defaults/setup
 .vscode
-/serv-env
 
-serv-533d3903da02.json
