@@ -62,3 +62,10 @@ def getPlace(serviceID, customerID):
 def sortLine(a):
     print(int(a['enqueue_time']))
     return int(a['enqueue_time'])
+
+@app.route("/cancelPlace")
+def delete_customer():
+    serviceID = request.args['service_id']
+    customerID = request.args['customer_id']
+    services_list.document(serviceID).collection("customers").document(customerID).delete()
+    return redirect("/")
