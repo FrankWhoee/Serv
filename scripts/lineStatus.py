@@ -21,21 +21,25 @@ def lineStatus_req():
     customerID = request.args['customer_id']
     print(customerID)
     print(serviceID)
-    waitedTime = int(time.time()) - int(
-        services_list.document(serviceID).collection("customers").document(customerID).get().to_dict()['enqueue_time'])
+    user = services_list.document(serviceID).collection("customers").document(customerID).get().to_dict()
+    waitedTime = int(time.time()) - int(user['enqueue_time'])
     waitedTime = str(datetime.timedelta(seconds=waitedTime))
     print(waitedTime)
-    return render_template("lineStatus.html", avgTime="4:20", waitedTime=waitedTime,
-                           place=getPlace(serviceID, customerID))
+
+    partyNum = user['party_size']
+
+    return render_template("lineStatus.html", avgTime= getAvgTime(serviceID), waitedTime=waitedTime,
+                           place=getPlace(serviceID, customerID), partyNum=partyNum)
 
 def getAvgTime(serviceID):
     customers = services_list.document(serviceID).collection("customers").stream()
-    temp = []
+    sum = 0
+    count = 0
     for user in customers:
-        id = user.id
-        user = user.to_dict()
-        user['id'] = id
-        temp.append(user)
+        waitedTime = int(time.time()) - int(user.to_dict()['enqueue_time'])
+        sum += waitedTime
+        count += 1
+    return str(datetime.timedelta(seconds=sum/count))[0:10]
 
 def getPlace(serviceID, customerID):
     customers = services_list.document(serviceID).collection("customers").stream()
