@@ -3,22 +3,23 @@
 
 <div class="container text-center">
     <div style="text-align: center;" width=50px>
-    <form action="" method="post" novalidate>
-        <div class="form-wrapper">
-            {{ form.csrf_token }}
-        </div>
-        <div class="form-wrapper">
-            {{ form.phone }}
-        </div>
-        <div class="form-wrapper">
-            {{ form.submit(class_="form-button") }}
+        <form action="" method="post" novalidate>
+            <div class="form-wrapper">
+                {{ form.csrf_token }}
+            </div>
+            <div class="form-wrapper">
+                {{ form.phone }}
+            </div>
+            <div class="form-wrapper">
+                {{ form.submit(class_="form-button") }}
+            </form>
         </form>
-    </form>
-    <body>
-        <hr>
-        <p style="font-size:150%;">or</p>
-        <p style="font-size:180%;"><b>Tap or Scan a Serv Tag</b></p>
-    </body>
+        <body>
+            <hr>
+            <p style="font-size:150%;">or</p>
+            <p style="font-size:180%;"><b>Tap or Scan a Serv Tag</b></p>
+        </body>
+    </div>
 </div>
 
 {% endblock %}

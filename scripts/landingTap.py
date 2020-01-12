@@ -18,14 +18,6 @@ class EnterQueueForm(FlaskForm):
     phone_number = StringField('phone number', validators=[DataRequired(),InputRequired()], render_kw={"placeholder": "required"})
     submit = SubmitField('continue 🡆')
 
-    def validate_phone(self, phone):
-        try:
-            p = phonenumbers.parse(phone_number.data)
-            if not phonenumbers.is_valid_number(p):
-                raise ValueError()
-        except (phonenumbers.phonenumberutil.NumberParseException, ValueError):
-            raise ValidationError('Invalid phone number')
-
 
 @app.route("/tap", methods=['GET', 'POST'])
 def landingTap_req_get():

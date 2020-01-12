@@ -27,10 +27,11 @@ def lineStatus_req():
     print(serviceID)
     try:
         user = services_list.document(serviceID).collection("customers").document(customerID).get().to_dict()
+        waitedTime = int(time.time()) - int(user['enqueue_time'])
+        waitedTime = str(datetime.timedelta(seconds=waitedTime))
     except:
         return redirect("/")
-    waitedTime = int(time.time()) - int(user['enqueue_time'])
-    waitedTime = str(datetime.timedelta(seconds=waitedTime))
+    
     print(waitedTime)
     form = LineStatusForm()
     partyNum = user['party_size']
