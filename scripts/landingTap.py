@@ -9,8 +9,8 @@ from flask_wtf import FlaskForm
 from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField, IntegerField, FormField
 from wtforms.validators import DataRequired, InputRequired
 from os import environ
-import phonenumbers
 from app import *
+from scripts.index import generateAndSendVericode
 
 class EnterQueueForm(FlaskForm):
     name = StringField("name", validators=[DataRequired()], render_kw={"placeholder": "required"})
@@ -42,5 +42,6 @@ def landingTap_req_get():
         print(numCustomers)
         flash('Login requested for user {}, phone number {}'.format(
             form.name.data, form.phone_number.data))
+        generateAndSendVericode(form.phone_number.data)
         return redirect("/verification?service_id="+serviceID+"&customer_id="+str(numCustomers))
     return render_template("landingTap.html", form=form, serviceID=serviceID)
