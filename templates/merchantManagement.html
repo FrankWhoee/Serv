@@ -5,16 +5,18 @@
 <div style="text-align: center;">
     <span><b>Venue management</b></span>
     <!-- top navbar -->
-    <button>Dashboard</button>
-    <button>Manage</button>
-    <button>Support</button>
-    <select name="" id="">
-        <option value="" disabled selected>{{merchant.name}}</option>
-        <option value="">Account Details</option>
-        <option value="">Transactions</option>
-        <option value="">Inventory</option>
-        <option value="">Your Services</option>
-    </select>
+    <div class=navbar>
+        <button>Dashboard</button>
+        <button>Manage</button>
+        <button>Support</button>
+        <div class="dropdown">
+            <button class="dropbtn">{{merchant.get('name')}}</button>
+            <a href="">Account Details</a>
+            <a href="">Your Services</a>
+            <a href="">Payment Methods</a>
+            <a href="">Transactions</a>
+        </div>
+    </div>
 
     <!-- main content -->
     <p>Dashboard</p>
