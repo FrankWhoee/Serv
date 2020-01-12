@@ -12,4 +12,4 @@ from wtforms.validators import DataRequired, InputRequired
 from os import environ
 from app import *
 
-@app.route('/mgmt')
+@app.route('/mLogIn')
