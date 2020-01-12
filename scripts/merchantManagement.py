@@ -15,6 +15,15 @@ from app import *
 
 @app.route('/mgmt')
 def merchantManagement_req_get():
-    merchant_id = request.args["mid"]
+    services = db.collection('services').stream()
+    emailDetected = False
+    for service in services:
+        if 'email' in session and service.get('email') == session['email']:
+            emailDetected = True
+            break
+    if ('email' in session and emailDetected):
+        
+    else:
+        return render_template('error.html')
     
     

@@ -13,27 +13,20 @@ from os import environ
 from app import *
 
 class LogInForm(FlaskForm):
-    email = StringField("email", validators=[DataRequired(),InputRequired(), Email()])
-    password = PasswordField("password", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(),InputRequired(), Email()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    submit = SubmitField('continue 🡆')
 
-def checkLogIn(mail, pass):
-
-
-@app.route('/mLogIn')
+@app.route('/mLogIn', methods=["GET", "POST"])
 def merchantLogin_req_get():
-    # get merchant id
-    # find merchant with that id
-    # check entered email and pass are correct
-    # if yes, move to management page with merchant id and unique id?
-    # else, reload page and show errors
     form = LogInForm()
-    # merchant_id = request.args['mid']
-    services = db.collections("services")
-
-        if form.validate_on_submit():
-            for service in services.stream():
-                if service.email == form.email.data and service.password = form.password.data:
-                    session['email'] = form.email.data
-                    break
-            
-            return redirect("/merchantManagement?service_id="+service_id+"&unid="+str(unid)")
+    services = db.collection(u'services').stream()
+    if form.validate_on_submit():
+        for service in services:
+            if service.get('email') == form.email.data and service.get('pass') == form.password.data:
+                # return redirect("/tap?service_id=71")
+                session['email'] = form.email.data
+                return redirect("/merchantManagement?service_id="+service_id)
+        return redirect("/tap?service_id=71")
+    return render_template("merchantLogIn.html", form=form)
+        
