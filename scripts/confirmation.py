@@ -11,8 +11,20 @@ from wtforms.validators import DataRequired
 from os import environ
 from app import *
 
-@app.route("/confirmation")
+services_list = db.collection(u'services')
+
+class ConfirmationForm(FlaskForm):
+    submit = SubmitField('I\'m here!')
+
+@app.route("/confirmation", methods=['GET','POST'])
 def confirmation_req():
-    reservationTimeout = 10
-    return render_template('confirmation.html', partySize=partySize, wait=wait, reservationTimeout=reservationTimeout)
+    customerID = request.args['customer_id']
+    serviceID = request.args['service_id']
+    form = ConfirmationForm()
+    if form.validate_on_submit():
+        user = services_list.document(serviceID).collection("customers").document(customerID)
+        user.delete()
+
+        return redirect("/")
+    return render_template('confirmation.html', form=form)
 
