@@ -23,6 +23,7 @@ def landingTap_req_get():
     merchantRef = db.collection("services").document(serviceID).collection("customers")
     form = EnterQueueForm()
     if form.validate_on_submit():
+        print(merchantRef)
         data = {
             u'name'  : form.name.data,
             u'enqueue_time' : int(time.time()),
