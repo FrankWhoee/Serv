@@ -62,7 +62,7 @@ def landingTap_req_get():
         if 'error' in user:
             return render_template("error.html", error=user['error'])
         return redirect("/verification?service_id="+serviceID+"&customer_id="+str(numCustomers))
-    return render_template("landingTap.html", form=form, serviceID=serviceID)
+    return render_template("landingTap.html", form=form, serviceID=serviceID, db=db)
 
 
 
