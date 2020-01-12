@@ -46,7 +46,7 @@ def index_req():
             return redirect("/")
         message = client.messages \
             .create(
-            body="Your verification code is" + str(vericode),
+            body="Your verification code is " + str(vericode),
             from_='+16049016042',
             to=form.phone.data
         )
