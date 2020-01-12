@@ -20,20 +20,17 @@ class EnterQueueForm(FlaskForm):
 @app.route("/tap", methods=['GET', 'POST'])
 def landingTap_req_get():
     serviceID = request.args['service_id']
-    merchantRef = db.collection("services").document(serviceID)
+    merchantRef = db.collection("services").document(serviceID).collection("customers")
     form = EnterQueueForm()
     if form.validate_on_submit():
         data = {
-            "49": {
-                u'name'  : form.name.data,
-                u'enqueue_time' : int(time.time()),
-                u'phone_number' : '' + str(form.phone_number.country_code.data) + '-' + str(form.phone_number.area_code.data) + 
-                '-' + str(form.phone_number.number.data),
-                u'party_size' : form.party_size.data,
-            }
+            u'name'  : form.name.data,
+            u'enqueue_time' : int(time.time()),
+            u'phone_number' : str(form.phone_number.data),
+            u'party_size' : form.party_size.data,
         }
-        merchantRef.update(data)
+        merchantRef.add(data)
         flash('Login requested for user {}, phone number {}'.format(
             form.name.data, form.phone_number.data))
-        return render_template("confirmation.html")
+        return redirect("/status?service_id="+serviceID+"&customer_id="+"1234")
     return render_template("landingTap.html", form=form, serviceID=serviceID)
