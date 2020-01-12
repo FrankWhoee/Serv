@@ -159,8 +159,11 @@ form {
 
 .form-wrapper input, label {    
     text-align: left;
-    font-size: var(--font-normal);
     width: 100%;
+}
+
+.form-wrapper label {
+    font-size: var(--font-small);
 }
 
 .form-wrapper input {
@@ -181,7 +184,6 @@ form {
         height: 40px;
     }
 }
-
 
 .form-wrapper label, .form-wrapper button, .form-wrapper select {
     display: block;
@@ -204,7 +206,7 @@ form {
 
 .form-wrapper .form-button {
     text-align: center;
-    font-size: var(--font-medium);
+    font-size: var(--font-normal);
     font-weight: var(--font-bold);
     background-color: var(--yellow);
 }
