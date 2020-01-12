@@ -14,5 +14,6 @@ from app import *
 @app.route('/mAirtable', methods=["GET", "POST"])
 def merchant_airtable_get():
     serviceID = request.args['service_id']
-    link = json.load("serviceAirtableMap.json")
+    with open('assets/js/serviceAirtableMap.json') as json_file:
+        link = json.load(json_file)
     return render_template("merchantAirtable.html", link=link[serviceID])
