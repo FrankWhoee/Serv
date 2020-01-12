@@ -32,6 +32,13 @@
             <span style="color: red;">[{{error}}]</span>
             {% endfor %}
         </p>
+        <p>
+            {{ form.merchant_type.label }} <br>
+            {{ form.merchant_type(size=16) }}<br>
+            {% for error in form.merchant_type.errors %}
+            <span style="color: red;">[{{error}}]</span>
+            {% endfor %}
+        </p>
         <p>{{ form.submit() }}</p>
     </form>
 </div>

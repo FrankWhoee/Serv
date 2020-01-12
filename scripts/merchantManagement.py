@@ -15,4 +15,6 @@ from app import *
 
 @app.route('/mgmt')
 def merchantManagement_req_get():
+    merchant_id = request.args["mid"]
+    
     
