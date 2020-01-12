@@ -6,7 +6,7 @@ import time
 from google.cloud import firestore
 from flask import Flask, request, render_template, send_from_directory, session, flash, redirect
 from flask_wtf import FlaskForm
-from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField, IntegerField, FormField
+from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField, IntegerField, FormField, SelectField
 from wtforms.validators import DataRequired, InputRequired, Email
 from os import environ
 from app import *
@@ -16,6 +16,8 @@ class CreateMerchantForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired(), Email()])
     phone_number = IntegerField("Phone Number", validators=[DataRequired(), InputRequired()])
     service_capacity = IntegerField("Service Capacity", validators=[DataRequired(), InputRequired()])
+    merchant_type = SelectField(u"Merchant Type", choices=[('serv', 'Service'), ('rest', 'Restaurant')])
+    
     submit = SubmitField("Register")
 
 @app.route("/mSignUp", methods=['GET', 'POST'])
