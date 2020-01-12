@@ -45,7 +45,7 @@ def lineStatus_req():
 
     if form.validate_on_submit():
         print("button pressed")
-        if form.confirm.data:
+        if form.confirm.data and place == 0:
             return redirect("/confirmation?service_id=" + serviceID + "&customer_id=" + customerID)
         if form.cancel.data:
             return delete_customer()

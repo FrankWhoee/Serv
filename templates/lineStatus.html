@@ -46,6 +46,11 @@
             dataType: 'json',
             success: function (data) {
                 $('#place').html(data['place']);// first set the value
+                if(data['place'] === '0'){
+                    $('#confirm-button').attr("disabled", false);
+                }else{
+                    $('#confirm-button').attr("disabled", true);
+                }
                 $('#wTime').html(data['wTime']);
                 $('#avgTime').html(data['avgTime']);
             },
