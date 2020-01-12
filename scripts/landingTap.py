@@ -35,9 +35,20 @@ def landingTap_req_get():
             u'phone_number' : str(form.phone_number.data),
             u'party_size' : form.party_size.data,
             u'customer_id' : numCustomers,
-            u'confirmed' : False,
             u'vericode': -1,
         }
+
+
+        headers = {
+            'Authorization': 'Bearer key1LZY2WzVaGvoLR',
+            'Content-Type': 'application/json',
+        }
+
+        data = '{\n  "records": [\n    {\n      "fields": {\n        "customer_id": "'+str(numCustomers)+'",\n        "party_size": "'+str(form.party_size.data)+'",\n        "phone_number": "'+str(form.phone_number.data)+'",\n        "name": "'+form.name.data+'",\n        "enqueue_time": "'+str(int(time.time()))+'",\n  "vericode": "-1"\n      }\n    }]\n}'
+
+        response = requests.post('https://api.airtable.com/v0/appbnu6z63Rg9Dno0/'+serviceID, headers=headers, data=data)
+
+
         merchantRef.document(str(numCustomers)).set(newData)
         print(numCustomers)
         flash('Login requested for user {}, phone number {}'.format(
@@ -45,3 +56,6 @@ def landingTap_req_get():
         generateAndSendVericode(form.phone_number.data)
         return redirect("/verification?service_id="+serviceID+"&customer_id="+str(numCustomers))
     return render_template("landingTap.html", form=form, serviceID=serviceID)
+
+
+

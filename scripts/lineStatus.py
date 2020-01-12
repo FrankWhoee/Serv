@@ -93,7 +93,6 @@ def delete_customer():
     services_list.document(serviceID).collection("customers").document(customerID).delete()
     return redirect("/")
 
-
 @app.route("/getStats")
 def returnStats():
     serviceID = request.args['service_id']
