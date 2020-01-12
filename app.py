@@ -3,6 +3,7 @@ import os
 import json
 import datetime
 import time
+import werkzeug
 from google.cloud import firestore
 from flask import Flask, request, render_template, send_from_directory, session, flash, redirect
 from flask_wtf import FlaskForm
@@ -45,3 +46,7 @@ def send_js(path):
     return send_from_directory('assets/js', path)
 
 # End send assets
+
+@app.errorhandler(werkzeug.exceptions.BadRequest)
+def handle_bad_request(e):
+    return render_template('error.html')
