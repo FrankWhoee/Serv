@@ -11,14 +11,31 @@ from os import environ
 from app import *
 from google.cloud import firestore
 import random
+from wtforms import ValidationError
 
 # Then query for documents
 services_list = db.collection(u'services')
 
 
 class veriForm(FlaskForm):
-    code = StringField("verification code", validators=[DataRequired()], render_kw={"placeholder": "required"})
+    code = StringField("code", validators=[DataRequired()])
     submit = SubmitField("submit")
+
+    def validate_code(self, field):
+        try:
+            userSubmittedCode = int(self.code.data)
+        except:
+            print("not int")
+            raise ValidationError("Non numerical code")
+        serviceID = request.args['service_id']
+        customerID = request.args['customer_id']
+        user = services_list.document(serviceID).collection("customers").document(customerID)
+        if user.get().to_dict()['vericode'] == userSubmittedCode and userSubmittedCode != -1:
+            print("success")
+        else:
+            print("other")
+            raise ValidationError("other issues")
+
 
 @app.route("/verification",methods=['GET','POST'])
 def verification_req():
@@ -26,19 +43,7 @@ def verification_req():
     serviceID = request.args['service_id']
     customerID = request.args['customer_id']
     if form.validate_on_submit():
-        try:
-            userSubmittedCode = int(form.code.data)
-        except:
-            return redirect("/verification?service_id=" + serviceID + "&customer_id=" + customerID)
-        user = services_list.document(serviceID).collection("customers").document(customerID)
-        if user.get().to_dict()['vericode'] == userSubmittedCode and userSubmittedCode != -1:
-            user.update({u'vericode': -1})
-            session['phone'] = user.get().to_dict()['phone_number']
-            print("Got phone number, and stored to session.")
-            return redirect("/status?service_id=" + serviceID + "&customer_id="+customerID)
-        else:
-            print("Wrong code")
-            return redirect("/verification?service_id=" + serviceID + "&customer_id=" + customerID)
+        return redirect("/status?service_id=" + serviceID + "&customer_id="+customerID)
     return render_template("verification.html",form=form)
 
 def getUser(phone):

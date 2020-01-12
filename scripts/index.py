@@ -12,6 +12,7 @@ from app import *
 from google.cloud import firestore
 import random
 from twilio.rest import Client
+from wtforms import ValidationError
 
 # Then query for documents
 services_list = db.collection(u'services')
@@ -22,6 +23,11 @@ services_list = db.collection(u'services')
 class phoneForm(FlaskForm):
     phone = StringField("phone number", validators=[DataRequired()], render_kw={"placeholder": "required"})
     submit = SubmitField("login")
+
+    def validate_phone(self, field):
+        user = generateAndSendVericode(field.data)
+        if user == -1 or 'error' in user:
+            raise ValidationError("Invalid phone number")
 
 
 @app.route("/", methods=['GET', 'POST'])
