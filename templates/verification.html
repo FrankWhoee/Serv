@@ -4,6 +4,7 @@
 <div class="container text-center">
     <h1>Check your SMS Messages for a verification code.</h1>
     <form action="" method="post" novalidate>
+        {{ form.csrf_token }}
         <p>Verification Code</p>
         {{ form.code }}
         {{ form.submit }}

@@ -13,8 +13,8 @@ from os import environ
 from app import *
 
 class LogInForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired(),InputRequired(), Email()])
-    password = PasswordField("Password", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(),InputRequired(), Email()], render_kw={"placeholder": "required"})
+    password = PasswordField("Password", validators=[DataRequired()], render_kw={"placeholder": "required"})
     submit = SubmitField('continue 🡆')
 
 @app.route('/mLogIn', methods=["GET", "POST"])
@@ -29,5 +29,5 @@ def merchantLogin_req_get():
                 session['email'] = form.email.data
                 return redirect("/mgmt?service_id="+service_id)
         return render_template("merchantLogin.html", form=form)
-    return render_template("merchantLogIn.html", form=form)
+    return render_template("merchantLogin.html", form=form)
         
