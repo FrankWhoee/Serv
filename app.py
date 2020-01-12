@@ -17,7 +17,7 @@ if not os.path.isfile("serv-91a70-ab6c2718a3d6.json"):
 
 
 db = firestore.Client(project="serv-91a70")
-# db = firestore.Client(project="serv-533d3903da02.json")
+# db = firestore.Client(project="serv-91a70-ab6c2718a3d6.json")
 
 app = Flask(__name__)
 if __name__ == '__main__':
