@@ -2,9 +2,10 @@
 {% block content %}
 
 <!--CONTENT-->
-<h1>Sign In</h1>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
+<div class="card">
+    <h1 class="defaultYellow">Sign In</h1>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
         <p>
             {{ form.name.label }} <br>
             {{ form.name(size=32) }}<br>
@@ -20,6 +21,7 @@
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
-</form>
+    </form>
+</div>
 
 {% endblock %}

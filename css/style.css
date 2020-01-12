@@ -14,7 +14,12 @@ body {
 
 /* Default rounded corners of all children elements*/
 body * {
-    border-radius: 10px;
+    border-radius: 15px;
+}
+
+/* Removes focus border */
+*:focus {
+    outline: none;
 }
 
 button {
@@ -40,16 +45,21 @@ a:visited, form::placeholder {
     color: black;
 }
 
-.card {
+.card, form {
     background-color: white;
-    border-radius: 10px;
     padding: 20px;
     text-align: center;
     margin: 0 auto;
+    width: 100%;
 }
 
 /* Automatically center child elements of a card */
-.card > {
+.card >, form > {
     margin: auto;
 }
+
+.phone {
+    display: inline-block;
+}
+
 
