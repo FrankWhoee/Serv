@@ -14,7 +14,8 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 app.secret_key = '\xf0"b1\x04\xe0.[?w\x0c(\x94\xcdh\xc1yq\xe3\xaf\xf2\x8f^\xdc'
-
+firebaseProjectID = environ['PROJECT_ID']
+firebaseAPIKey = environ['API_KEY']
 from scripts import confirmation, lineStatus, payment, services, landingTap
 
 # Begin send assets
