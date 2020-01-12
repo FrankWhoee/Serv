@@ -3,43 +3,30 @@
 
 <!-- CONTENT -->
 <div style="text-align: center;">
-    <span><b>Register your organization</b></span>
+    <span><b>register</b> your organization to start <b>serv'ing</b></span>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
-        <p>
-            {{ form.name.label }} <br>
-            {{ form.name(size=16) }}<br>
-            {% for error in form.name.errors %}
-            <span style="color: red;">[{{error}}]</span>
-            {% endfor %}
-            {{ form.email.label }} <br>
-            {{ form.email(size=16) }}<br>
-            {% for error in form.email.errors %}
-            <span style="color: red;">[{{error}}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.phone_number.label }} <br>
-            {{ form.phone_number(size=16) }}<br>
-            {% for error in form.phone_number.errors %}
-            <span style="color: red;">[{{error}}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.service_capacity.label }} <br>
-            {{ form.service_capacity(size=16) }}<br>
-            {% for error in form.service_capacity.errors %}
-            <span style="color: red;">[{{error}}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.merchant_type.label }} <br>
-            {{ form.merchant_type(size=16) }}<br>
-            {% for error in form.merchant_type.errors %}
-            <span style="color: red;">[{{error}}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
+        {% if form.errors|length > 0 %}
+            <span class="form-error">please fill out all <b>required fields</b></span>
+        {% endif %}
+        <br>
+        <div class="form-wrapper" id="user-username">
+            {{ form.name.label }}
+            {{ form.name}}
+        </div>
+        <div class="form-wrapper" id="party-size">
+            {{ form.service_capacity.label}}
+            {{ form.service_capacity}}
+        </div>
+        <div class="form-wrapper">
+            {{ form.email.label }}
+            {{ form.email}}
+        </div>
+        <div class="form-wrapper">
+            {{ form.phone_number.label }}
+            {{ form.phone_number}}
+        </div>
+        <div class="form-wrapper">{{ form.submit(class_="form-button")}}</div>
     </form>
 </div>
 {% endblock %}
