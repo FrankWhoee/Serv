@@ -21,7 +21,7 @@ services_list = db.collection(u'services')
 
 class phoneForm(FlaskForm):
     phone = StringField("phone", validators=[DataRequired()])
-    submit = SubmitField("submit")
+    submit = SubmitField("Login with Phone Number")
 
 
 @app.route("/", methods=['GET', 'POST'])

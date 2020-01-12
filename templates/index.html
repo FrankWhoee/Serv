@@ -2,15 +2,23 @@
 {% block content %}
 
 <div class="container text-center">
-    <h1>Tap or Scan a Serv sticker to start.</h1>
-    <h3>Or</h3>
-    <h1>Login</h1>
+    <div style="text-align: center;" width=50px>
     <form action="" method="post" novalidate>
-        {{ form.csrf_token }}
-        <p>Phone Number</p>
-        {{ form.phone }}
-        {{ form.submit }}
+        <div class="form-wrapper">
+            {{ form.csrf_token }}
+        </div>
+        <div class="form-wrapper">
+            {{ form.phone }}
+        </div>
+        <div class="form-wrapper">
+            {{ form.submit(class_="form-button") }}
+        </form>
     </form>
+    <body>
+        <hr>
+        <p style="font-size:150%;">or</p>
+        <p style="font-size:180%;"><b>Tap or Scan a Serv Tag</b></p>
+    </body>
 </div>
 
 {% endblock %}
