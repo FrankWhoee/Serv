@@ -13,6 +13,6 @@ from app import *
 
 @app.route("/confirmation")
 def confirmation_req():
-    timer = '15 min remaining';
-    return render_template('confirmation.html', timer=timer)
+    reservationTimeout = 10
+    return render_template('confirmation.html', partySize=partySize, wait=wait, reservationTimeout=reservationTimeout)
 

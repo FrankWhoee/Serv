@@ -1,24 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
-
-<div style="height: 73vh;" class="px-5">
-    <div class="row row-center-vertical" style="height: 33%">
+<div style="height: 20vh;" class="px-5">
+    <div class="row row-center-vertical" style="height: 25%">
         <div class="container py-5 text-center">
-            <div>
-                <span style="font-family:verdana;font-size:40px">
-                        <script language="JavaScript">
-                            TargetDate = new Date().valueOf() + 0*60000 + 5*1000;
-                            BackColor = "white";
-                            ForeColor = "black";
-                            CountActive = true;
-                            CountStepper = -1;
-                            LeadingZero = true;
-                            DisplayFormat = "%%M%% Minutes, %%S%% Seconds.";
-                            FinishMessage = "Your reservation has been cancelled.";
-                        </script>
-                    <script language="JavaScript" src="https://rhashemian.github.io/js/countdown.js"></script>
-                </span>
-            </div>
+            <span style="font-family:verdana;font: size 15px">
+                <h3>Please proceed to your venue.<br>Your reservation will be held until the timer hits 0.</h3>
+            </span>
+            <span style="font-family:verdana;font: size 15px">
+                <span id="reservationTimeoutId" hidden>{{ reservationTimeout }}</span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div style="height: 20vh;" class="px-5">
+    <script>
+        var reservationTimeoutTime = document.getElementById("reservationTimeoutId").innerHTML;
+        document.getElementById("reservationTimeoutId").innerHTML = reservationTimeoutTime;
+    </script>
+    <div class="row row-center-vertical" style="height: 25%">
+        <div class="container py-5 text-center">
+            <span style="font-family:verdana;font-size:30px">
+                <script language="JavaScript">
+                    TargetDate = new Date().valueOf() + 0*60000 + reservationTimeoutTime*1000;
+                    BackColor = "white";
+                    ForeColor = "black";
+                    CountActive = true;
+                    CountStepper = -1;
+                    LeadingZero = true;
+                    DisplayFormat = "%%M%% Minutes, %%S%% Seconds.";
+                    FinishMessage = "Your reservation has been cancelled.";
+                </script>
+                <script language="JavaScript" src="../js/countdown.js"></script>
+            </span>
         </div>
     </div>
 </div>
