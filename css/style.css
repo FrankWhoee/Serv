@@ -55,6 +55,8 @@ a:visited, form::placeholder {
     color: var(--dark-gray);
 }
 
+/* General form and button formatting ========================================== */
+
 form {
     padding: 20px;
     text-align: center;
@@ -76,7 +78,7 @@ form {
 .form-wrapper input {
     box-shadow: 0px 5px 15px #00000029;
     border-radius: 10px;
-    height: 50px;
+    height: 60px;
     font-size: 15px;
     padding: 10px;
 }
@@ -86,15 +88,40 @@ form {
     color: var(--dark-gray);
 }
 
-button, .button {
+.error {
+    color: var(--dark-gray);
+}
+
+button, .button, .button * {
     background-color: var(--yellow);
     color: black;
     text-align: center;
     align-items: center;
 }
 
-button:active, button:focus, .button:active, .button:focus {
+button:active, 
+button:hover, 
+.button:active, 
+.button:hover, 
+.button:active *, 
+.button:hover * {
     background-color: white;
     border-color: var(--yellow);
     border-width: 2px;
+}
+
+
+/* Specific landing tap form formatting ======================================== */
+
+#user-username, #party-size {
+    float: left;
+}
+
+#user-username {
+    width: 80%;
+}
+
+#party-size {
+    padding-left: 20px;
+    width: 20%;
 }

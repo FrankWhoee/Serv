@@ -6,15 +6,18 @@
     <span><b>Line up</b> with name and phone number.</span>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag()}}
-        <div class="form-wrapper" width=60%>
+        {% if form.errors|length > 0 %}
+            <span class="error">please fill out all required fields</span>
+        {% endif %}
+        <div class="form-wrapper" id="user-username" width=60%>
             {{ form.name.label}}
             {{ form.name}}
         </div>
-        <div class="form-wrapper" width=60%>
+        <div class="form-wrapper" id="party-size" width=60%>
             {{ form.party_size.label}}
             {{ form.party_size}}
         </div>
-        <div class="form-wrapper" width=60%>
+        <div class="form-wrapper">
             {{ form.phone_number.label }}
             {{ form.phone_number}}
         </div>
