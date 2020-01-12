@@ -33,7 +33,8 @@ def landingTap_req_get():
             numCustomers = numCustomers + 1
         newData = {
             u'name'  : form.name.data,
-            u'enqueue_time' : time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(time.time()))),
+            u'enqueue_time_english' : time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(time.time()))),
+            u'enqueue_time': int(time.time()),
             u'phone_number' : str(form.phone_number.data),
             u'party_size' : form.party_size.data,
             u'customer_id' : numCustomers,
