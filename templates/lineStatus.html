@@ -2,18 +2,16 @@
 {% block content %}
 
 <div class="container">
-    <h3>You are now in queue.</h3>
+    <br>
+    <h3>You are now in queue for {{service}}.</h3>
     <h5 class="bottom-padding">Party of {{ partyNum }} | ◴ <span id="wTime">{{ waitedTime }}</span></h5>
-   
-    <img src="../assets/img/people.svg" class="status-image"></img>
-
+    <br>
     <h3>There are</h3>
     <h1 id="place">{{ place }}</h1>
     <h3 class="bottom-padding">parties in front of you</h3>
-
-    <p>On average, people wait <span id="avgTime">{{avgTime}}</span>.</p>
-
-    <img src="../assets/img/sample-times.svg" class="status-image"></img>
+    <br>
+    <p>Have a seat.</p>
+    <p>On average. people wait about <span id="avgTime">{{avgTime}}</span>.</p>
     <br>
     <form action="" method="post" novalidate>
         {{ form.csrf_token }}
@@ -22,9 +20,6 @@
             {{ form.confirm(class_="form-button", id="confirm-button")}}
         </div>
     </form>
-    <br>
-    <br>
-    <br>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -52,7 +47,12 @@
                     $('#confirm-button').attr("disabled", true);
                 }
                 $('#wTime').html(data['wTime']);
-                $('#avgTime').html(data['avgTime']);
+                if(data['avgTime'][0] === '0' || data['avgTime'][0] === '00' || data['avgTime'][0] === ''){
+                    $('#avgTime').html(data['avgTime'][1] + " minutes");
+                }else{
+                    $('#avgTime').html(data['avgTime'][0] + " hours and " + data['avgTime'][1] + " minutes");
+                }
+                
             },
             complete: function (data) {
                 // Schedule the next
