@@ -1,3 +1,9 @@
+:root {
+    --light-gray: #f5f5f5;
+    --dark-gray: #888888;
+    --yellow: #ffd009;
+}
+
 .github-icon{
     width: 20px
 }
@@ -7,59 +13,56 @@
 }
 
 body {
-    background-color: #f5f5f5;
+    background-color: var(--light-gray);
     color: black;
     font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+}
+
+footer {
+    width: 100%;
+    position: absolute;
+    align-items: center;
 }
 
 /* Default rounded corners of all children elements*/
 body * {
-    border-radius: 15px;
+    border-radius: 10px;
+    border: none;
 }
 
 /* Removes focus border */
-*:focus {
+input:focus {
     outline: none;
 }
 
 button {
-    background-color: #272727;
-    color: white;
+    background-color: var(--yellow);
+    color: black;
+    width: 50%;
 }
 
 button:active, button:focus {
     background-color: white;
-    color: #272727;
-    border-color: #272727;
+    border-color: var(--yellow);
     border-width: 2px;
 }
 
 /* Default color on click and filled form elements (from black text) is a muted grey currently */
 a:visited, form::placeholder {
-    color: lightslategray;
+    color: var(--dark-gray);
 }
 
-/* Class for anything in a yellow element */
-.defaultYellow {
-    background-color: #ffd009;
-    color: black;
-}
-
-.card, form {
-    background-color: white;
+form {
     padding: 20px;
     text-align: center;
     margin: 0 auto;
     width: 100%;
 }
 
-/* Automatically center child elements of a card */
-.card >, form > {
-    margin: auto;
+form input {
+    box-shadow: 0px 5px 15px #00000029;
+    border-radius: 10px;
+    opacity: 1;
+    padding: 10px;
 }
-
-.phone {
-    display: inline-block;
-}
-
-
