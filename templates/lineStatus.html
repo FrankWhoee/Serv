@@ -2,26 +2,28 @@
 {% block content %}
 
 <div class="container">
-    <div class="card-red">
-        <div class="row text-white">
-            <div class="col">
-                <p class="font-weight-bold">
-                    You are
-                </p>
-                <h1 style="font-size: 10vw">#{{ place }}</h1>
-                <p class="font-weight-bold">
-                    in line.
-                </p>
-            </div>
-            <div class="col">
-                <h3>Average Waiting Time</h3>
-                <h5>{{ avgTime }}</h5>
-                <h3>You have waited</h3>
-                <h5>{{ waitedTime }}</h5>
-                <h5>Party of {{ partyNum }}</h5>
-            </div>
+    <h3>You are now in queue.</h3>
+    <h5 class="bottom-padding">Party of {{ partyNum }} | ◴ {{ waitedTime }}</h5>
+   
+    <img src="../assets/img/people.svg" class="status-image"></img>
+
+    <h3>There are</h3>
+    <h1>{{ place }}</h1>
+    <h3 class="bottom-padding">parties in front of you</h3>
+
+    <p>On average, people wait {{avgTime}}.</p>
+
+    <img src="../assets/img/sample-times.svg" class="status-image"></img>
+    <br>
+    <form action="" method="post" novalidate>
+        <div class="form-wrapper bottom-padding">
+            {{ form.cancel(class_="form-button", id="cancel-button")}}
+            {{ form.confirm(class_="form-button", id="confirm-button")}}
         </div>
-    </div>
+    </form>
+    <br>
+    <br>
+    <br>
 </div>
 
 {% endblock %}

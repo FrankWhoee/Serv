@@ -12,10 +12,14 @@ from app import *
 from google.cloud import firestore
 
 # Then query for documents
-services_list = db.collection(u'services')
+services_list = db.collection('services')
 
 
-@app.route("/status")
+class LineStatusForm(FlaskForm):
+    confirm = SubmitField('confirm')
+    cancel = SubmitField('cancel')
+
+@app.route("/status", methods=['GET', 'POST'])
 def lineStatus_req():
     serviceID = request.args['service_id']
     customerID = request.args['customer_id']
@@ -25,11 +29,22 @@ def lineStatus_req():
     waitedTime = int(time.time()) - int(user['enqueue_time'])
     waitedTime = str(datetime.timedelta(seconds=waitedTime))
     print(waitedTime)
-
+    form = LineStatusForm()
     partyNum = user['party_size']
+    place = getPlace(serviceID, customerID)
 
+    print("GOT HERE")
+    if form.validate_on_submit():
+        print("button pressed")
+        if form.confirm.data:
+            return redirect("/confirmation?service_id="+serviceID+"&customer_id"+customerID)
+        if form.cancel.data:
+            return delete_customer()
+    
     return render_template("lineStatus.html", avgTime= getAvgTime(serviceID), waitedTime=waitedTime,
-                           place=getPlace(serviceID, customerID), partyNum=partyNum)
+                           place=place, partyNum=partyNum, form=form)
+
+                           
 
 def getAvgTime(serviceID):
     customers = services_list.document(serviceID).collection("customers").stream()
