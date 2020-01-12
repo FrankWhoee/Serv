@@ -2,13 +2,10 @@
 {% block content %}
 
 <div class="container text-center">
-    <h1>Tap or Scan a Serv sticker to start.</h1>
-    <h3>Or</h3>
-    <h1>Login</h1>
+    <h1>Check your SMS Messages for a verification code.</h1>
     <form action="" method="post" novalidate>
-        {{ form.csrf_token }}
-        <p>Phone Number</p>
-        {{ form.phone }}
+        <p>Verification Code</p>
+        {{ form.code }}
         {{ form.submit }}
     </form>
 </div>
