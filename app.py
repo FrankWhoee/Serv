@@ -27,7 +27,7 @@ app.secret_key = '\xf0"b1\x04\xe0.[?w\x0c(\x94\xcdh\xc1yq\xe3\xaf\xf2\x8f^\xdc'
 firebaseProjectID = environ['PROJECT_ID']
 firebaseAPIKey = environ['API_KEY']
 twilioAuth = environ['TWILIO_AUTH']
-from scripts import confirmation, lineStatus, payment, services, landingTap, merchantSignUp, merchantLogin, merchantManagement, index, verification
+from scripts import confirmation, lineStatus, payment, services, landingTap, merchantSignUp, merchantLogin, merchantManagement, index, verification, merchantAirtable
 
 # Begin send assets
 @app.route('/assets/img/<path>')

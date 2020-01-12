@@ -20,11 +20,9 @@ class ConfirmationForm(FlaskForm):
 def confirmation_req():
     customerID = request.args['customer_id']
     serviceID = request.args['service_id']
-    user = services_list.document(serviceID).collection("customers").document(customerID)
-    if 'phone' not in session or user.get().to_dict()['phone_number'] != session['phone']:
-        return redirect("/")
     form = ConfirmationForm()
     if form.validate_on_submit():
+        user = services_list.document(serviceID).collection("customers").document(customerID)
         user.delete()
 
         return redirect("/")
