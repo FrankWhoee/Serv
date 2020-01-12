@@ -12,9 +12,9 @@ from os import environ
 from app import *
 
 class EnterQueueForm(FlaskForm):
-    name = StringField("Name", validators=[DataRequired()])
-    party_size = IntegerField('Party Size', validators=[DataRequired(),InputRequired()])
-    phone_number = IntegerField('Phone Number', validators=[DataRequired(),InputRequired()])
+    name = StringField("name", validators=[DataRequired()], render_kw={"placeholder": "required"})
+    party_size = IntegerField('party size', validators=[DataRequired(),InputRequired()], render_kw={"value": 1})
+    phone_number = IntegerField('phone number', validators=[DataRequired(),InputRequired()], render_kw={"placeholder": "required"})
     submit = SubmitField('Enter Queue')
 
 @app.route("/tap", methods=['GET', 'POST'])
