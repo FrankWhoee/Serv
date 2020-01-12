@@ -27,15 +27,18 @@ class veriForm(FlaskForm):
         except:
             print("not int")
             raise ValidationError("Non numerical code")
-        serviceID = request.args['service_id']
-        customerID = request.args['customer_id']
-        user = services_list.document(serviceID).collection("customers").document(customerID)
-        if user.get().to_dict()['vericode'] == userSubmittedCode and userSubmittedCode != -1:
-            print("success")
-            session['phone'] = user.get().to_dict()['phone_number']
-        else:
-            print("other")
-            raise ValidationError("other issues")
+        try:
+            user = services_list.document(serviceID).collection("customers").document(customerID)
+            print("in db")
+            if user.get().to_dict()['vericode'] == userSubmittedCode and userSubmittedCode != -1:
+                print("success")
+                session['phone'] = user.get().to_dict()['phone_number']
+            else:
+                print("other")
+                raise ValidationError("Does not exist")
+        except:
+            print("probs not in db")
+            raise ValidationError("Non numerical code")
 
 
 @app.route("/verification",methods=['GET','POST'])

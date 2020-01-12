@@ -24,9 +24,9 @@
     :root {
         --font-large: 50px;
         --font-medium-large: 40px;
-        --font-medium: 10px;
+        --font-medium: 30px;
         --font-normal: 15px;
-        --font-small: 12px;
+        --font-small: 15px;
         --font-bold: 700;
     }
 }
