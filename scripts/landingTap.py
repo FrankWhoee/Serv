@@ -26,6 +26,8 @@ def landingTap_req_get():
     form = EnterQueueForm()
     if form.validate_on_submit():
         customers = merchantRef.stream()
+        if int(db.collections('services').document(serviceID).get('service_capacity')) < form.party_size.data:
+            # 
         numCustomers = 0
         for customer in customers:
             numCustomers = numCustomers + 1
