@@ -24,15 +24,16 @@ class EnterQueueForm(FlaskForm):
 @app.route("/tap", methods=['GET', 'POST'])
 def landingTap_req_get():
     serviceID = request.args['service_id']
-    merchantRef = db.collections("services").document(serviceID)
+    merchantRef = db.collection("services").document(serviceID)
     form = EnterQueueForm()
     if form.validate_on_submit():
         data = {
-            u'name'  : form.name,
+            u'name'  : form.name.data,
             u'enqueue_time' : firestore.SERVER_TIMESTAMP,
-            u'phone_number' : form.phone_number.country_code + '-' + form.phone_number.area_code + '-' + form.phone_number.number,
+            u'phone_number' : '' + str(form.phone_number.country_code.data) + '-' + str(form.phone_number.area_code.data) + 
+            '-' + str(form.phone_number.number.data),
         }
-        merchantRef.set(data)
+        merchantRef.update(data)
         flash('Login requested for user {}, phone number {}'.format(
             form.name.data, form.phone_number.data))
         return redirect(url_for('confirmation'))

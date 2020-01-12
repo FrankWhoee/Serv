@@ -10,7 +10,7 @@ from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 from os import environ
 
-db = firestore.Client()
+db = firestore.Client(project="serv-533d3903da02.json")
 
 app = Flask(__name__)
 if __name__ == '__main__':
