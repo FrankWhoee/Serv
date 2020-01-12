@@ -166,10 +166,23 @@ form {
     padding: 10px;
 }
 
-.form-wrapper label, .form-wrapper button {
+.form-wrapper label, .form-wrapper button, .form-wrapper select {
     display: block;
     color: var(--dark-gray);
     padding-bottom: 10px;
+}
+
+.form-wrapper select, .form-wrapper select::before {
+    margin: 0 auto; 
+    display: block;
+}
+
+.form-wrapper select {
+    padding: 10px;
+}
+
+.form-wrapper select:focus {
+    outline: 0;
 }
 
 .form-wrapper .form-button {
@@ -194,6 +207,7 @@ form {
 
 #user-username *, #party-size * {
     white-space: nowrap;
+    display: block;
 }
 
 #party-size input {
@@ -226,4 +240,9 @@ form {
 .status-image {
     padding-bottom: 10px;
     padding-top: 10px;
+}
+
+/* Specific to merchant stuff  =================================================== */
+#merchant-title {
+    text-align: center;
 }
