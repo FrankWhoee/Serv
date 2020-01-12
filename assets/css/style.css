@@ -166,7 +166,7 @@ form {
     padding: 10px;
 }
 
-.form-wrapper label {
+.form-wrapper label, .form-wrapper button {
     display: block;
     color: var(--dark-gray);
     padding-bottom: 10px;

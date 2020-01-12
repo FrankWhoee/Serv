@@ -16,6 +16,7 @@
     <img src="../assets/img/sample-times.svg" class="status-image"></img>
     <br>
     <form action="" method="post" novalidate>
+        {{ form.csrf_token }}
         <div class="form-wrapper bottom-padding">
             {{ form.cancel(class_="form-button", id="cancel-button")}}
             {{ form.confirm(class_="form-button", id="confirm-button")}}
