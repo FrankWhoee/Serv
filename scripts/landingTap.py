@@ -32,5 +32,5 @@ def landingTap_req_get():
         merchantRef.update(data)
         flash('Login requested for user {}, phone number {}'.format(
             form.name.data, form.phone_number.data))
-        return redirect(url_for('confirmation'))
+        return render_template("confirmation.html")
     return render_template("landingTap.html", form=form, serviceID=serviceID)
