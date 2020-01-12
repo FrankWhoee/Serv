@@ -10,18 +10,16 @@
 
     <link rel="icon" href="../img/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Kulim+Park&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700|Zilla+Slab:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="">
-<div class="container text-center">
-    <img class="logo py-5" src="../img/serv-logo.svg">
-</div>
+    <header>
+        <div class="container text-center">
+            <img class="logo py-5" src="../img/serv-logo.svg">
+        </div>
+    </header>
 <div id="content">{% block content %}{% endblock %}</div>
-<div class="container text-center py-3">
-    <a href="https://github.com/frankwhoee/serv"><img class="github-icon" src="../img/github-icon.svg"></a>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -38,5 +36,13 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
+<footer>
+    <div class="container text-center">
+        <span><b>powered by</b></span>
+        <img src="../img/serv-logo.svg" height="40" width="40"></img>
+        <br>
+        <a href="https://github.com/frankwhoee/serv"><img class="github-icon" src="../img/github-icon.svg"></a>
+    </div>
+</footer>
 </body>
 </html>

@@ -9,33 +9,56 @@ from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 from os import environ
 from app import *
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
+from google.cloud import firestore
 
+# Then query for documents
+services_list = db.collection(u'services')
 
-config = {
-    "apiKey": firebaseAPIKey,
-    "authDomain": "serv-91a70.firebaseapp.com",
-    "databaseURL": "https://serv-91a70.firebaseio.com/",
-    "storageBucket": "serv-91a70.appspot.com"
-}
-
-cred = credentials.ApplicationDefault()
-firebase_admin.initialize_app(cred, {
-  'projectId': firebaseProjectID,
-})
-
-db = firestore.client()
 
 @app.route("/status")
 def lineStatus_req():
-    doc_ref = db.collection(u'services').document('69')
+    serviceID = request.args['service_id']
+    customerID = request.args['customer_id']
+    print(customerID)
+    print(serviceID)
+    user = services_list.document(serviceID).collection("customers").document(customerID).get().to_dict()
+    waitedTime = int(time.time()) - int(user['enqueue_time'])
+    waitedTime = str(datetime.timedelta(seconds=waitedTime))
+    print(waitedTime)
 
-    try:
-        doc = doc_ref.get()
-        print(u'Document data: {}'.format(doc.to_dict()))
-    except Exception as e:
-        print("Error, no such document.")
-        print(e)
-    return render_template("lineStatus.html", avgTime="4:20", waitedTime="2:00", place=5)
+    partyNum = user['party_size']
+
+    return render_template("lineStatus.html", avgTime= getAvgTime(serviceID), waitedTime=waitedTime,
+                           place=getPlace(serviceID, customerID), partyNum=partyNum)
+
+def getAvgTime(serviceID):
+    customers = services_list.document(serviceID).collection("customers").stream()
+    sum = 0
+    count = 0
+    for user in customers:
+        waitedTime = int(time.time()) - int(user.to_dict()['enqueue_time'])
+        sum += waitedTime
+        count += 1
+    return str(datetime.timedelta(seconds=sum/count))[0:10]
+
+def getPlace(serviceID, customerID):
+    customers = services_list.document(serviceID).collection("customers").stream()
+    temp = []
+    for user in customers:
+        id = user.id
+        user = user.to_dict()
+        user['id'] = id
+        temp.append(user)
+    temp.sort(key=sortLine)
+    i = 0
+    print(temp)
+    for user in temp:
+        if user['id'] == customerID:
+            return i
+        i += 1
+    return -1
+
+
+def sortLine(a):
+    print(int(a['enqueue_time']))
+    return int(a['enqueue_time'])
