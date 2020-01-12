@@ -21,9 +21,9 @@
 
     --font-large: 40px;
     --font-medium-large: 30px;
-    --font-medium: 15px;
-    --font-normal: 12px;
-    --font-small: 10px;
+    --font-medium: 20px;
+    --font-normal: 15px;
+    --font-small: 12px;
     --font-bold: 700;
 }
 
@@ -222,6 +222,8 @@ form {
 .form-error {
     color: var(--dark-gray);
     font-size: var(--font-small);
+    margin-bottom: 10px;
+    display: block;
 }
 
 
