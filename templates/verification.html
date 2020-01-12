@@ -2,12 +2,16 @@
 {% block content %}
 
 <div class="container text-center">
-    <h1>Check your SMS Messages for a verification code.</h1>
+    <h1>Check your phone for a verification code.</h1>
     <form action="" method="post" novalidate>
         {{ form.csrf_token }}
-        <p>Verification Code</p>
-        {{ form.code }}
-        {{ form.submit }}
+        <div class="form-wrapper">
+            {{ form.code.label }}
+            {{ form.code }}
+        </div>
+        <div class="form-wrapper">
+            {{ form.submit(class_="form-button")}}
+        </div>
     </form>
 </div>
 

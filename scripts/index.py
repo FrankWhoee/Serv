@@ -31,6 +31,8 @@ def index_req():
         user = generateAndSendVericode(form.phone.data)
         if user == -1:
             return redirect("/")
+        if 'error' in user:
+            return render_template("error.html", error=user['error'])
         return redirect("/verification?service_id=" + user['service'] + "&customer_id=" + user['id'])
     return render_template("index.html", form=form)
 
@@ -48,12 +50,16 @@ def generateAndSendVericode(phone):
     else:
         print("Did not find phone number: " + phone)
         return -1
-    message = client.messages \
-        .create(
-        body="Your verification code is " + str(vericode),
-        from_='+16049016042',
-        to=phone
-    )
+    try:
+        message = client.messages \
+            .create(
+            body="Your verification code is " + str(vericode),
+            from_='+16049016042',
+            to=phone
+        )
+    except:
+        print("Authorization failed.")
+        return {"error":"Number is not verified. Twilio account is trial. Upgrade to fix."}
     return user
 
 def getUser(phone):

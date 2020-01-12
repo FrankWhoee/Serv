@@ -3,6 +3,7 @@ import os
 import json
 import datetime
 import time
+import werkzeug
 from google.cloud import firestore
 from flask import Flask, request, render_template, send_from_directory, session, flash, redirect
 from flask_wtf import FlaskForm
@@ -17,7 +18,7 @@ if not os.path.isfile("serv-91a70-ab6c2718a3d6.json"):
 
 
 db = firestore.Client(project="serv-91a70")
-# db = firestore.Client(project="serv-533d3903da02.json")
+# db = firestore.Client(project="serv-91a70-ab6c2718a3d6.json")
 
 app = Flask(__name__)
 if __name__ == '__main__':
@@ -45,3 +46,11 @@ def send_js(path):
     return send_from_directory('assets/js', path)
 
 # End send assets
+
+@app.errorhandler(werkzeug.exceptions.BadRequest)
+def handle_bad_request(e):
+    return render_template('error.html')
+
+@app.errorhandler(404) 
+def handle_bad_request(e):
+    return render_template('error.html')
