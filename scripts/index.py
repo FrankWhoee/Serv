@@ -29,11 +29,8 @@ def index_req():
     form = phoneForm()
     if form.validate_on_submit():
         user = generateAndSendVericode(form.phone.data)
-        if user == -1:
-            return redirect("/")
-        if 'error' in user:
-            return render_template("error.html", error=user['error'])
-        return redirect("/verification?service_id=" + user['service'] + "&customer_id=" + user['id'])
+        if not (user == -1 or 'error' in user):
+            return redirect("/verification?service_id=" + user['service'] + "&customer_id=" + user['id'])
     return render_template("index.html", form=form)
 
 def generateAndSendVericode(phone):
