@@ -50,3 +50,7 @@ def send_js(path):
 @app.errorhandler(werkzeug.exceptions.BadRequest)
 def handle_bad_request(e):
     return render_template('error.html')
+
+@app.errorhandler(404) 
+def handle_bad_request(e):
+    return render_template('error.html')
