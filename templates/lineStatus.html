@@ -1,6 +1,495 @@
 {% extends "base.html" %}
 {% block content %}
 
+<style>
+    .label-Custom {
+        background-color: black;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+        padding: 2px 13px;
 
+    }
+
+    .label-Sticker {
+        background-color: dodgerblue;
+        border: none;
+        color: white;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-Box {
+        background-color: saddlebrown;
+        border: none;
+        color: white;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-Envelope {
+        background-color: mediumpurple;
+        border: none;
+        color: white;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-Big {
+        background-color: sandybrown;
+        border: none;
+        color: white;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-Bulk {
+        background-color: darkred;
+        border: none;
+        color: white;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-Starter-Kit {
+        background-color: forestgreen;
+        border: none;
+        color: white;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-New-Semester-Grant {
+        background-color: white;
+        border: none;
+        color: black;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-Minecraft {
+        background-color: grey;
+        border: none;
+        color: white;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-New-Club-Grant {
+        background-color: white;
+        border: none;
+        color: black;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-NAP {
+        background-color: #e42d40;
+        border: none;
+        color: white;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-PAP {
+        background-color: white;
+        border: none;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-NS {
+        background-color: grey;
+        border: none;
+        color: white;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-S {
+        background-color: sandybrown;
+        border: none;
+        color: white;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+
+    }
+
+    .label-A {
+        background-color: forestgreen;
+        border: none;
+        color: white;
+        padding: 2px 13px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+    }
+
+
+    * {
+        font-family: 'Kulim Park', sans-serif;
+    }
+
+    .card-red {
+        background-color: #e42d40;
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .card-red-outline {
+        border: solid #e42d40;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .text-red {
+        color: #e42d40;
+    }
+
+    .card-blue {
+        background-color: dodgerblue;
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .card-img {
+        width: auto;
+        height: auto;
+        max-width: 200px;
+        border-radius: 10px;
+    }
+
+    .card-yellow {
+        background-color: sandybrown;
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .center-viewport {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        /* bring your own prefixes */
+        transform: translate(-50%, -50%);
+    }
+
+    .row-center-vertical {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .col-width-equal-flex {
+        flex-basis: 0;
+        flex-shrink: 0;
+    }
+
+    .button-red {
+        background-color: #e42d40;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+        font-weight: bold;
+    }
+
+    .button-blue {
+        background-color: dodgerblue;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+        font-weight: bold;
+    }
+
+    .button-light-blue {
+        background-color: #80c1ff;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        border-radius: 50px;
+        font-weight: bold;
+    }
+
+
+    .form-control {
+        border-radius: 5px;
+        border: none;
+    }
+
+    .button-white {
+        background-color: white;
+        border: none;
+        color: black;
+        padding: 15px 25px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 50px;
+        font-weight: bold;
+    }
+
+    .button-black {
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 50px;
+        font-weight: bold;
+    }
+
+    .button-green {
+        background-color: forestgreen;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 50px;
+        font-weight: bold;
+    }
+
+    .font-large {
+        font-size: 30px;
+    }
+
+    a:link {
+        text-decoration: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: white;
+        text-decoration: none;
+    }
+
+    a light:hover {
+        text-decoration: none;
+    }
+
+    a:active {
+        text-decoration: none;
+    }
+
+    .add-dot {
+        background-color: rgba(0, 0, 0, 0);
+        color: #e42d40;
+        -moz-border-radius: 50px/50px;
+        -webkit-border-radius: 50px 50px;
+        border-radius: 50px/50px;
+        border: 21px solid #e42d40;
+        width: 100px;
+        height: 100px;
+    }
+
+    hr.day {
+        border: 1px solid lightgray;
+        background-color: lightgray;
+        border-radius: 20px;
+    }
+
+    hr.night {
+        border: 1px solid #2a2a2a;
+        background-color: #2a2a2a;
+        border-radius: 20px;
+    }
+
+    .spin {
+        -webkit-transition-duration: 0.5s;
+        -moz-transition-duration: 0.5s;
+        -o-transition-duration: 0.5s;
+        transition-duration: 0.5s;
+        -webkit-transition-property: -webkit-transform;
+        -moz-transition-property: -moz-transform;
+        -o-transition-property: -o-transform;
+        transition-property: transform;
+    }
+
+    body {
+        overflow: overlay;
+        overflow-x: hidden;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+        background: transparent;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #e42d40;
+        border-radius: 10px;
+    }
+
+    .hop {
+        width: 25px
+    }
+
+    body.day {
+        background: white;
+    }
+
+    body.night {
+        background: black;
+    }
+
+    .logo-main {
+        width: 25vw;
+    }
+
+    h1.day {
+        color: black;
+    }
+
+    h1.night {
+        color: white;
+    }
+
+    p.day {
+        color: black;
+    }
+
+    p.night {
+        color: white;
+    }
+
+    .github-icon{
+        width: 20px
+    }
+
+    p.code.day{
+        border-radius: 4px;
+        background-color: lightgray;
+        color: hotpink;
+    }
+
+    p.code.night{
+        border-radius: 4px;
+        background-color: #333333;
+        color: hotpink;
+    }
+</style>
+
+<div class="container">
+    <div class="card-red">
+        <div class="row text-white">
+            <div class="col">
+                <p class="font-weight-bold">
+                    You are
+                </p>
+                <h1 style="font-size: 10vw">#{{ place }}</h1>
+                <p class="font-weight-bold">
+                    in line.
+                </p>
+            </div>
+            <div class="col">
+                <h3>Average Waiting Time</h3>
+                <h5>{{ avgTime }}</h5>
+                <h3>You have waited</h3>
+                <h5>{{ waitedTime }}</h5>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
