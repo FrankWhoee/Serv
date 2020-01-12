@@ -27,7 +27,7 @@ def landingTap_req_get():
     if form.validate_on_submit():
         customers = merchantRef.stream()
         if int(db.collections('services').document(serviceID).get('service_capacity')) < form.party_size.data:
-            # 
+            return render_template("error.html", error="Your party size is too big for the merchant.")
         numCustomers = 0
         for customer in customers:
             numCustomers = numCustomers + 1
