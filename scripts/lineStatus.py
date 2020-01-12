@@ -40,7 +40,6 @@ def lineStatus_req():
     partyNum = user['party_size']
     place = getPlace(serviceID, customerID)
 
-    print("GOT HERE")
     if form.validate_on_submit():
         print("button pressed")
         if form.confirm.data:

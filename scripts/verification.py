@@ -17,7 +17,7 @@ services_list = db.collection(u'services')
 
 
 class veriForm(FlaskForm):
-    code = StringField("code", validators=[DataRequired()])
+    code = StringField("verification code", validators=[DataRequired()], render_kw={"placeholder": "required"})
     submit = SubmitField("submit")
 
 @app.route("/verification",methods=['GET','POST'])
