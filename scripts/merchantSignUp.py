@@ -12,11 +12,11 @@ from os import environ
 from app import *
 
 class CreateMerchantForm(FlaskForm):
-    name = StringField("Organization Name", validators=[DataRequired()])
-    email = StringField("Email", validators=[DataRequired(), Email()])
-    password = PasswordField("Password", validators=[DataRequired()])
-    phone_number = IntegerField("Phone Number", validators=[DataRequired(), InputRequired()])
-    service_capacity = IntegerField("Service Capacity", validators=[DataRequired(), InputRequired()])
+    name = StringField("Organization Name", validators=[DataRequired()], render_kw={"placeholder": "required"})
+    email = StringField("Email", validators=[DataRequired(), Email()], render_kw={"placeholder": "required"})
+    password = PasswordField("Password", validators=[DataRequired()], render_kw={"placeholder": "required"})
+    phone_number = IntegerField("Phone Number", validators=[DataRequired(), InputRequired()], render_kw={"placeholder": "required"})
+    service_capacity = IntegerField("Service Capacity", validators=[DataRequired(), InputRequired()], render_kw={"placeholder": "required"})
     merchant_type = SelectField(u"Merchant Type", choices=[('serv', 'Service'), ('rest', 'Restaurant')])
     submit = SubmitField("Register")
 

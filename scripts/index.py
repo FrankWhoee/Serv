@@ -20,7 +20,7 @@ services_list = db.collection(u'services')
 # <a href="/cancelPlace?service_id={{ serviceID }}&customer_id={{ customerID }}" class="button-white">Cancel</a>
 
 class phoneForm(FlaskForm):
-    phone = StringField("phone", validators=[DataRequired()])
+    phone = StringField("phone", validators=[DataRequired()], render_kw={"placeholder": "required"})
     submit = SubmitField("Login with Phone Number")
 
 
