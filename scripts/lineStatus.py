@@ -50,8 +50,8 @@ def lineStatus_req():
         if form.cancel.data:
             return delete_customer()
 
-    return render_template("lineStatus.html", avgTime=getAvgTime(serviceID), waitedTime=waitedTime,
-                           place=place, partyNum=partyNum, form=form, serviceID=serviceID, customerID=customerID)
+    return render_template("lineStatus.html", avgTime="-- minutes", waitedTime=waitedTime,
+                           place=place, partyNum=partyNum, form=form, serviceID=serviceID, customerID=customerID, service=services_list.document(serviceID).get().to_dict()['name'])
 
 
 def getAvgTime(serviceID):
@@ -62,7 +62,8 @@ def getAvgTime(serviceID):
         waitedTime = int(time.time()) - int(user.to_dict()['enqueue_time'])
         sum += waitedTime
         count += 1
-    return str(datetime.timedelta(seconds=sum / count))[0:10]
+    result = str(datetime.timedelta(seconds=sum / count))
+    return (result[0:result.find(":") - 1], result[result.find(":")+1:result.rfind(":")])
 
 
 def getPlace(serviceID, customerID):

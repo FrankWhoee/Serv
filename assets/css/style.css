@@ -19,9 +19,9 @@
     --dark-gray: #888888;
     --yellow: #ffd009;
 
-    --font-large: 20px;
-    --font-medium-large: 10px;
-    --font-medium: 15px;
+    --font-large: 40px;
+    --font-medium-large: 30px;
+    --font-medium: 20px;
     --font-normal: 15px;
     --font-small: 12px;
     --font-bold: 700;
@@ -88,6 +88,7 @@ p {
 
 h1 {
     font-size: var(--font-large);
+    color: var(--yellow);
     margin-inline: 0;
     margin-block: 0;
 }
@@ -118,8 +119,12 @@ input:focus {
     text-align: center;
     align-items: center;
     color: black;
+}
+
+.b1, .button, .b2, button {
     height: 60px;
 }
+
 
 button, .b1, .button, 
 .b2:active, .b2:hover {
@@ -161,10 +166,22 @@ form {
 .form-wrapper input {
     box-shadow: 0px 5px 15px #00000029;
     border-radius: 10px;
-    height: 60px;
     font-size: var(--font-normal);
     padding: 10px;
 }
+
+@media (min-device-height : 768px) {
+    .form-wrapper input {
+        height: 60px;
+    }
+}
+
+@media (max-device-height : 768px) {
+    .form-wrapper input {
+        height: 40px;
+    }
+}
+
 
 .form-wrapper label, .form-wrapper button, .form-wrapper select {
     display: block;
@@ -197,9 +214,16 @@ form {
     background-color: white;
 }
 
+.form-wrapper .form-button:disabled {
+    background-color: var(--dark-gray);
+    color: var(--light-gray);
+}
+
 .form-error {
     color: var(--dark-gray);
     font-size: var(--font-small);
+    margin-bottom: 10px;
+    display: block;
 }
 
 
@@ -214,15 +238,17 @@ form {
     text-align: center;
 }
 
-#user-username {
-    float: left;
-    width: 70%;
-}
+@media (min-device-width : 768px) {
+    #user-username {
+        float: left;
+        width: 70%;
+    }
 
-#party-size {
-    padding-left: 10px;
-    width: 30%;
-    float: right;
+    #party-size {
+        width: 30%;
+        float: right;
+        padding-left: 10px;
+    }
 }
 
 #navbar {
@@ -269,14 +295,22 @@ form {
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 /* Specific to lineStatus  ====================================================== */
 
-#cancel-button {
-    width: 40%;
-    float: left;
+@media (min-device-width : 768px) {
+    #cancel-button {
+        width: 40%;
+        float: left;
+    }
+    
+    #confirm-button {
+        float: right;
+        width: 55%;
+    }
 }
 
-#confirm-button {
-    float: right;
-    width: 55%;
+@media (max-device-width: 768px) {
+    #cancel-button {  
+        margin-bottom: 10px;
+    }
 }
 
 .status-image {

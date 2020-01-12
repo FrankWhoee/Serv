@@ -3,6 +3,7 @@
 
 <!--CONTENT-->
 <div style="text-align: center;" width=50px>
+    <br>
     <h1>{{ db.collection('services').document(serviceID).get(field_paths={'name': None}).to_dict()['name'] }}</h1>
     <span><b>line up</b> with name and phone number.</span>
     <form action="" method="post" novalidate>
@@ -10,7 +11,6 @@
         {% if form.errors|length > 0 %}
             <span class="form-error">please fill out all <b>required fields</b></span>
         {% endif %}
-        <br>
         <div class="form-wrapper" id="user-username">
             {{ form.name.label}}
             {{ form.name}}
