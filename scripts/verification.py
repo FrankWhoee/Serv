@@ -17,7 +17,7 @@ services_list = db.collection(u'services')
 
 
 class veriForm(FlaskForm):
-    code = StringField("Verification Code", validators=[DataRequired()], render_kw={"placeholder": "required"})
+    code = StringField("code", validators=[DataRequired()])
     submit = SubmitField("submit")
 
 @app.route("/verification",methods=['GET','POST'])
@@ -26,7 +26,10 @@ def verification_req():
     serviceID = request.args['service_id']
     customerID = request.args['customer_id']
     if form.validate_on_submit():
-        userSubmittedCode = int(form.code.data)
+        try:
+            userSubmittedCode = int(form.code.data)
+        except:
+            return redirect("/verification?service_id=" + serviceID + "&customer_id=" + customerID)
         user = services_list.document(serviceID).collection("customers").document(customerID)
         if user.get().to_dict()['vericode'] == userSubmittedCode and userSubmittedCode != -1:
             user.update({u'vericode': -1})
