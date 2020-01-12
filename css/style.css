@@ -2,6 +2,13 @@
     --light-gray: #f5f5f5;
     --dark-gray: #888888;
     --yellow: #ffd009;
+
+    --font-large: 40px;
+    --font-medium-large: 30px;
+    --font-medium: 20px;
+    --font-normal: 15px;
+    --font-small: 12px;
+    --font-bold: 700;
 }
 
 .github-icon{
@@ -12,8 +19,22 @@
     width: 10vw;
 }
 
+button, .button, .button * {
+    background-color: var(--yellow);
+    color: black;
+    text-align: center;
+    align-items: center;
+}
+
+button:active, button:hover, 
+.button:active, .button:hover {
+    background-color: white;
+    border-color: var(--yellow);
+    border-width: 2px;
+}
+
 b {
-    font-weight: 700;
+    font-weight: var(--font-bold);
 }
 
 body {
@@ -31,7 +52,7 @@ body * {
 
 footer {
     width: 100%;
-    padding-top: 20px;
+    padding-top: 10px;
     position: absolute;
     align-items: center;
 }
@@ -71,7 +92,7 @@ form {
 .form-wrapper input, label {    
     font-family: 'Zilla Slab', serif;
     text-align: left;
-    font-size: 15px;
+    font-size: var(--font-normal);
     width: 100%;
 }
 
@@ -79,7 +100,7 @@ form {
     box-shadow: 0px 5px 15px #00000029;
     border-radius: 10px;
     height: 60px;
-    font-size: 15px;
+    font-size: var(--font-normal);
     padding: 10px;
 }
 
@@ -88,40 +109,41 @@ form {
     color: var(--dark-gray);
 }
 
-.error {
-    color: var(--dark-gray);
-}
-
-button, .button, .button * {
-    background-color: var(--yellow);
-    color: black;
+.form-wrapper .form-button {
     text-align: center;
-    align-items: center;
+    font-size: var(--font-medium);
+    font-weight: var(--font-bold);
+    background-color: var(--yellow);
 }
 
-button:active, 
-button:hover, 
-.button:active, 
-.button:hover, 
-.button:active *, 
-.button:hover * {
+.form-wrapper .form-button:active, 
+.form-wrapper .form-button:hover {
     background-color: white;
-    border-color: var(--yellow);
-    border-width: 2px;
+}
+
+.form-error {
+    color: var(--dark-gray);
+    font-size: var(--font-small);
 }
 
 
 /* Specific landing tap form formatting ======================================== */
 
-#user-username, #party-size {
-    float: left;
+#user-username *, #party-size * {
+    white-space: nowrap;
+}
+
+#party-size input {
+    text-align: center;
 }
 
 #user-username {
-    width: 80%;
+    float: left;
+    width: 70%;
 }
 
 #party-size {
-    padding-left: 20px;
-    width: 20%;
+    padding-left: 10px;
+    width: 30%;
+    float: right;
 }

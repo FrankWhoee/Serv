@@ -3,12 +3,13 @@
 
 <!--CONTENT-->
 <div style="text-align: center;" width=50px>
-    <span><b>Line up</b> with name and phone number.</span>
+    <span><b>line up</b> with name and phone number.</span>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag()}}
         {% if form.errors|length > 0 %}
-            <span class="error">please fill out all required fields</span>
+            <span class="form-error">please fill out all <b>required fields</b></span>
         {% endif %}
+        <br>
         <div class="form-wrapper" id="user-username" width=60%>
             {{ form.name.label}}
             {{ form.name}}
@@ -22,7 +23,7 @@
             {{ form.phone_number}}
         </div>
         <div class="form-wrapper">
-            {{ form.submit(class_="button")}}
+            {{ form.submit(class_="form-button")}}
         </div>
     </form>
 </div>

@@ -16,7 +16,7 @@ class EnterQueueForm(FlaskForm):
     name = StringField("name", validators=[DataRequired()], render_kw={"placeholder": "required"})
     party_size = IntegerField('party size', validators=[DataRequired(),InputRequired()], render_kw={"value": 1, "placeholder": "required"})
     phone_number = StringField('phone number', validators=[DataRequired(),InputRequired()], render_kw={"placeholder": "required"})
-    submit = SubmitField('continue →')
+    submit = SubmitField('continue 🡆')
 
     def validate_phone(self, phone):
         try:
