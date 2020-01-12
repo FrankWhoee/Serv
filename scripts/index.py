@@ -50,16 +50,18 @@ def index_req():
             from_='+16049016042',
             to=form.phone.data
         )
-        return redirect("/verification?service_id=" + user['service'] + "&customer_id" + user['id'])
+        return redirect("/verification?service_id=" + user['service'] + "&customer_id=" + user['id'])
     return render_template("index.html", form=form)
 
 
 def getUser(phone):
     for service in services_list.stream():
-        for user in service.collection("customers"):
+        service = services_list.document(service.id)
+        for user in service.collection("customers").stream():
+            id = user.id
             user = user.to_dict()
-            if user['phone'] == phone:
+            if user['phone_number'] == phone:
                 user['service'] = service.id
-                user['id'] = user.id
+                user['id'] = id
                 return user
     return -1
