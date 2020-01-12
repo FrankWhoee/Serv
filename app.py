@@ -10,8 +10,8 @@ from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 from os import environ
 
-if not os.path.isfile("serv-533d3903da02.json"):
-    f = open("serv-533d3903da02.json",'w')
+if not os.path.isfile("serv-91a70-ab6c2718a3d6.json"):
+    f = open("serv-91a70-ab6c2718a3d6.json",'w')
     f.write(environ['serviceData'])
     f.close()
 
@@ -26,7 +26,8 @@ if __name__ == '__main__':
 app.secret_key = '\xf0"b1\x04\xe0.[?w\x0c(\x94\xcdh\xc1yq\xe3\xaf\xf2\x8f^\xdc'
 firebaseProjectID = environ['PROJECT_ID']
 firebaseAPIKey = environ['API_KEY']
-twilioAuth = environ['TWILIO_AUTH']
+# twilioAuth = environ['TWILIO_AUTH']
+twilioAuth = os.getenv('TWILIO_AUTH')
 from scripts import confirmation, lineStatus, payment, services, landingTap, merchantSignUp, merchantLogin, merchantManagement, index, verification
 
 # Begin send assets
