@@ -19,6 +19,12 @@ body {
     font-weight: 200;
 }
 
+/* Default rounded corners of all children elements*/
+body * {
+    border-radius: 10px;
+    border: none;
+}
+
 footer {
     width: 100%;
     padding-top: 20px;
@@ -26,10 +32,12 @@ footer {
     align-items: center;
 }
 
-/* Default rounded corners of all children elements*/
-body * {
-    border-radius: 10px;
-    border: none;
+footer * {
+    border-radius: 0;
+}
+
+span {
+    font-weight: 100;
 }
 
 /* Removes focus border */
@@ -37,10 +45,9 @@ input:focus {
     outline: none;
 }
 
-button {
+button, .button {
     background-color: var(--yellow);
     color: black;
-    width: 50%;
 }
 
 button:active, button:focus {
@@ -66,7 +73,7 @@ form {
 }
 
 .form-wrapper input, label {    
-    font: Medium 15px/18px Zilla Slab;
+    font-family: 'Zilla Slab', serif;
     text-align: left;
     font-size: 15px;
     width: 100%;
