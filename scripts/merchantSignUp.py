@@ -23,7 +23,7 @@ def merchantSignUp_req_get():
     services = db.collection(u'services').stream()
     form = CreateMerchantForm()
     if form.validate_on_submit():
-        max = 0
+        max = -1
         for service in services:
             if int(service.id) > max:
                 max = int(service.id)
@@ -35,9 +35,9 @@ def merchantSignUp_req_get():
             u'phone_number' : form.phone_number.data,
             u'service_capacity' : form.service_capacity.data,
         }
-        merchantRef = db.collection(u'services').document(str(max)).set(data).collection("customers")
+        db.collection('services').document(str(max)).set(data)
         empty = {}
-        merchantRef.set(empty)
+        db.collection('services').document(str(max)).collection(u"customers")
         flash('New Merchant requested with name {}, email {}, phone number {}'.format(
             form.name.data, form.email.data, form.phone_number.data))
         return redirect("/tap?service_id=69")
