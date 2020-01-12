@@ -11,7 +11,7 @@ from wtforms.validators import DataRequired, InputRequired
 from os import environ
 from app import *
 from scripts.index import generateAndSendVericode
-
+from scripts.index import getUser
 
 class EnterQueueForm(FlaskForm):
     name = StringField("name", validators=[DataRequired()], render_kw={"placeholder": "required"})
@@ -43,6 +43,9 @@ def landingTap_req_get():
             u'customer_id': numCustomers,
             u'vericode': -1,
         }
+        phoneUser = getUser(form.phone_number.data)
+        if phoneUser != -1:
+            return redirect("/status?service_id=" + phoneUser['service'] + "&customer_id=" + phoneUser['id'])
 
         headers = {
             'Authorization': 'Bearer key1LZY2WzVaGvoLR',
