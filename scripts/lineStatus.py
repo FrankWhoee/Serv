@@ -19,19 +19,35 @@ services_list = db.collection(u'services')
 def lineStatus_req():
     serviceID = request.args['service_id']
     customerID = request.args['customer_id']
-    waitedTime = services_list.document(serviceID).get().to_dict()[customerID]
+    print(customerID)
+    print(serviceID)
+    waitedTime = int(time.time()) - int(
+        services_list.document(serviceID).collection("customers").document(customerID).get().to_dict()['enqueue_time'])
+    waitedTime = str(datetime.timedelta(seconds=waitedTime))
+    print(waitedTime)
+    return render_template("lineStatus.html", avgTime="4:20", waitedTime=waitedTime,
+                           place=getPlace(serviceID, customerID))
 
-    return render_template("lineStatus.html", avgTime="4:20", waitedTime=waitedTime, place=getPlace(serviceID,customerID))
-
+def getAvgTime(serviceID):
+    customers = services_list.document(serviceID).collection("customers").stream()
+    temp = []
+    for user in customers:
+        id = user.id
+        user = user.to_dict()
+        user['id'] = id
+        temp.append(user)
 
 def getPlace(serviceID, customerID):
-    customers = services_list.document(serviceID).get().to_dict()
+    customers = services_list.document(serviceID).collection("customers").stream()
     temp = []
-    for user in customers.keys():
-        customers['id'] = user
-        temp.append(customers[user])
+    for user in customers:
+        id = user.id
+        user = user.to_dict()
+        user['id'] = id
+        temp.append(user)
     temp.sort(key=sortLine)
     i = 0
+    print(temp)
     for user in temp:
         if user['id'] == customerID:
             return i
@@ -39,5 +55,6 @@ def getPlace(serviceID, customerID):
     return -1
 
 
-def sortLine(a, b):
-    return int(a['enqueue_time']) - int(b['enqueue_time'])
+def sortLine(a):
+    print(int(a['enqueue_time']))
+    return int(a['enqueue_time'])
