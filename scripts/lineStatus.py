@@ -29,10 +29,13 @@ def lineStatus_req():
     try:
         user = services_list.document(serviceID).collection("customers").document(customerID).get().to_dict()
         if 'phone' not in session or user['phone_number'] != session['phone']:
+            print("Not logged in.")
             return redirect("/")
         waitedTime = int(time.time()) - int(user['enqueue_time'])
         waitedTime = str(datetime.timedelta(seconds=waitedTime))
-    except:
+    except Exception as e:
+        print("Error occurred in calculating waittime")
+        print(e)
         return redirect("/")
 
     print(waitedTime)

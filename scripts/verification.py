@@ -34,6 +34,7 @@ def verification_req():
         if user.get().to_dict()['vericode'] == userSubmittedCode and userSubmittedCode != -1:
             user.update({u'vericode': -1})
             session['phone'] = user.get().to_dict()['phone_number']
+            print("Got phone number, and stored to session.")
             return redirect("/status?service_id=" + serviceID + "&customer_id="+customerID)
         else:
             print("Wrong code")
