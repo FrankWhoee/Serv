@@ -29,5 +29,5 @@ def merchantLogin_req_get():
                 session['email'] = form.email.data
                 return redirect("/mgmt?service_id="+service_id)
         return render_template("merchantLogin.html", form=form)
-    return render_template("merchantLogIn.html", form=form)
+    return render_template("merchantLogin.html", form=form)
         
