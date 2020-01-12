@@ -29,18 +29,18 @@ firebaseAPIKey = environ['API_KEY']
 from scripts import confirmation, lineStatus, payment, services, landingTap, merchantSignUp
 
 # Begin send assets
-@app.route('/img/<path>')
+@app.route('/assets/img/<path>')
 def send_assets(path):
-    return send_from_directory('img', path)
+    return send_from_directory('assets/img', path)
 
 
-@app.route('/css/<path>')
+@app.route('/assets/css/<path>')
 def send_style(path):
-    return send_from_directory('css', path)
+    return send_from_directory('assets/css', path)
 
 
-@app.route('/js/<path>')
+@app.route('/assets/js/<path>')
 def send_js(path):
-    return send_from_directory('js', path)
+    return send_from_directory('assets/js', path)
 
 # End send assets
