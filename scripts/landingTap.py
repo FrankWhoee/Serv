@@ -42,5 +42,5 @@ def landingTap_req_get():
         print(numCustomers)
         flash('Login requested for user {}, phone number {}'.format(
             form.name.data, form.phone_number.data))
-        return redirect("/status?service_id="+serviceID+"&customer_id="+str(numCustomers))
+        return redirect("/verification?service_id="+serviceID+"&customer_id="+str(numCustomers))
     return render_template("landingTap.html", form=form, serviceID=serviceID)
