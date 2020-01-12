@@ -2,6 +2,38 @@
 {% block content %}
 <!-- CONTENT -->
 
+<div style="text-align: center;">
+    <span><b>Venue management</b></span>
+    <!-- top navbar -->
+    <button>Dashboard</button>
+    <button>Manage</button>
+    <button>Support</button>
+    <select name="" id="">
+        <option value="" disabled selected>{{merchant.name}}</option>
+        <option value="">Account Details</option>
+        <option value="">Transactions</option>
+        <option value="">Inventory</option>
+        <option value="">Your Services</option>
+    </select>
 
+    <!-- main content -->
+    <p>Dashboard</p>
+    <table style="width:100%">
+        <tr>
+          <th>Table #</th>
+          <th>Service Type</th>
+          <th>Status</th>
+        </tr>
+        {% for table in tables %}
+        <tr>
+            <th>{{table.id}}</th>
+            <th>{{table.get('service_type')}}</th>
+            <th>{{table.get('status')}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- footer -->
+</div>
 
 {% endblock %}

@@ -25,8 +25,9 @@ def merchantLogin_req_get():
         for service in services:
             if service.get('email') == form.email.data and service.get('pass') == form.password.data:
                 # return redirect("/tap?service_id=71")
+                service_id = service.id
                 session['email'] = form.email.data
-                return redirect("/merchantManagement?service_id="+service_id)
-        return redirect("/tap?service_id=71")
+                return redirect("/mgmt?service_id="+service_id)
+        return render_template("merchantLogin.html", form=form)
     return render_template("merchantLogIn.html", form=form)
         

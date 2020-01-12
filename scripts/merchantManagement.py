@@ -13,17 +13,23 @@ from os import environ
 from app import *
 
 
+
 @app.route('/mgmt')
 def merchantManagement_req_get():
+    # if 'email' in session:
     services = db.collection('services').stream()
-    emailDetected = False
+    service_id = request.args["service_id"]
+    merchant = None
+    tables = []
+    users = []
     for service in services:
-        if 'email' in session and service.get('email') == session['email']:
-            emailDetected = True
-            break
-    if ('email' in session and emailDetected):
-        
-    else:
-        return render_template('error.html')
+        if str(service.id) == service_id:
+            merchant = service
+    for table in db.collection('services').document(service_id).collection('tables').stream():
+        tables.append(table)
+    for user in db.collection('services').document(service_id).collection('customers').stream():
+        users.append(user)
+    return render_template('merchantManagement.html', tables=tables, users=users, service_id=service_id, merchant=merchant)
+    # return render_template('error.html')
     
     
