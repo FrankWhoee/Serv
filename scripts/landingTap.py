@@ -42,6 +42,8 @@ def landingTap_req_get():
             u'phone_number' : str(form.phone_number.data),
             u'party_size' : form.party_size.data,
             u'customer_id' : numCustomers,
+            u'confirmed' : False,
+            u'vericode': -1,
         }
         merchantRef.document(str(numCustomers)).set(newData)
         print(numCustomers)

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- CONTENT -->
+<div style="text-align: center;">
+    <span><b>Enter</b> your credentials to start <b>serv'ing</b></span>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        {% if form.errors|length > 0 %}
+            <span class="form-error">please fill out all <b>required fields</b></span>
+        {% endif %}
+        <br>
+        <div class="form-wrapper">
+            {{ form.email.label }}
+            {{ form.email}}
+        </div>
+        <div class="form-wrapper">
+            {{ form.password.label}}
+            {{ form.password}}
+        </div>
+        <div class="form-wrapper">
+            {{ form.submit(class_="form-button")}}
+        </div>
+    </form>
+</div>
+
+{% endblock %}
