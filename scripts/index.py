@@ -65,6 +65,8 @@ def generateAndSendVericode(phone):
         return {"error":"Number is not verified. Twilio account is trial. Upgrade to fix."}
     return user
 
+
+
 def getUser(phone):
     for service in services_list.stream():
         service = services_list.document(service.id)

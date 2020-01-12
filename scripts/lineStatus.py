@@ -10,6 +10,7 @@ from wtforms.validators import DataRequired
 from os import environ
 from app import *
 from google.cloud import firestore
+from twilio.rest import Client
 
 # Then query for documents
 services_list = db.collection('services')
@@ -94,6 +95,7 @@ def delete_customer():
     serviceID = request.args['service_id']
     customerID = request.args['customer_id']
     services_list.document(serviceID).collection("customers").document(customerID).delete()
+    remindSMSConfirm(serviceID)
     return redirect("/")
 
 @app.route("/getStats")
@@ -110,3 +112,31 @@ def returnStats():
     results['wTime'] = str(datetime.timedelta(seconds=waitedTime))
     results['place'] = str(getPlace(serviceID, customerID))
     return json.dumps(results)
+
+
+def remindSMSConfirm(serviceID):
+    customers = services_list.document(serviceID).collection("customers").stream()
+    temp = []
+    for user in customers:
+        id = user.id
+        user = user.to_dict()
+        user['id'] = id
+        temp.append(user)
+    temp.sort(key=sortLine)
+    phone = temp[0]['phone_number']
+
+    account_sid = 'ACabc7043ed30c2bbffa09aa12fbda8e63'
+    auth_token = twilioAuth
+    client = Client(account_sid, auth_token)
+
+    try:
+        message = client.messages \
+            .create(
+            body="Hey! You are the next in line for " + services_list.document(serviceID).get().to_dict()['name'] + ".Go to https://team-serv.herokuapp.com/status?service_id="+serviceID + "&customer_id=" + user['id'] + " to confirm your spot.",
+            from_='+16049016042',
+            to=phone
+        )
+    except:
+        print("Authorization failed.")
+        return {"error": "Number is not verified. Twilio account is trial. Upgrade to fix."}
+    return user

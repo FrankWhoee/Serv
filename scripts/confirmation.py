@@ -10,6 +10,7 @@ from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 from os import environ
 from app import *
+from scripts.lineStatus import remindSMSConfirm
 
 services_list = db.collection(u'services')
 
@@ -24,6 +25,7 @@ def confirmation_req():
     if form.validate_on_submit():
         user = services_list.document(serviceID).collection("customers").document(customerID)
         user.delete()
+        remindSMSConfirm(serviceID)
 
         return redirect("/")
     return render_template('confirmation.html', form=form)
