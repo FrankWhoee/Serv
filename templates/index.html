@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container">
+<div class="container text-center">
     <h1>Tap or Scan a Serv sticker to start.</h1>
-    <h1>Or</h1>
+    <h3>Or</h3>
     <h1>Login</h1>
     <form>
-        <input type="text">
+        <p>Phone Number</p>
+        {{ form.phone }}
+        {{ form.submit }}
     </form>
 </div>
 
