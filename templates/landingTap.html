@@ -2,30 +2,25 @@
 {% block content %}
 
 <!--CONTENT-->
-<div style="text-align: center;">
+<div style="text-align: center;" width=50px>
     <span><b>Line up</b> with name and phone number.</span>
     <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.name.label }} <br>
-            {{ form.name(size=16) }}<br>
-            {% for error in form.name.errors %}
-            <span style="color: red;">[{{error}}]</span>
-            {% endfor %}
-            {{ form.party_size.label }} <br>
-            {{ form.party_size(size=16) }}<br>
-            {% for error in form.name.errors %}
-            <span style="color: red;">[{{error}}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.phone_number.label }} <br>
-            {{ form.phone_number(size=16) }}<br>
-            {% for error in form.phone_number.errors %}
-            <span style="color: red;">[{{error}}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
+        {{ form.hidden_tag()}}
+        <div class="form-wrapper" width=60%>
+            {{ form.name.label}}
+            {{ form.name}}
+        </div>
+        <div class="form-wrapper" width=60%>
+            {{ form.party_size.label}}
+            {{ form.party_size}}
+        </div>
+        <div class="form-wrapper" width=60%>
+            {{ form.phone_number.label }}
+            {{ form.phone_number}}
+        </div>
+        <div class="form-wrapper">
+            {{ form.submit(class_="redboi") }}
+        </div>
     </form>
 </div>
 
