@@ -9,33 +9,33 @@ from wtforms import SelectMultipleField, TextAreaField, SubmitField, StringField
 from wtforms.validators import DataRequired
 from os import environ
 from app import *
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
+from google.cloud import firestore
 
 
-config = {
-    "apiKey": firebaseAPIKey,
-    "authDomain": "serv-91a70.firebaseapp.com",
-    "databaseURL": "https://serv-91a70.firebaseio.com/",
-    "storageBucket": "serv-91a70.appspot.com"
-}
+# Add a new document
+db = firestore.Client()
 
-cred = credentials.ApplicationDefault()
-firebase_admin.initialize_app(cred, {
-  'projectId': firebaseProjectID,
-})
-
-db = firestore.client()
+# Then query for documents
+services_list = db.collection(u'services')
 
 @app.route("/status")
 def lineStatus_req():
-    doc_ref = db.collection(u'services').document('69')
+    serviceID = request.args['service_id']
+    customerID = request.args['customer_id']
+    waitedTime = services_list.document(serviceID).to_dict()[customerID]
 
-    try:
-        doc = doc_ref.get()
-        print(u'Document data: {}'.format(doc.to_dict()))
-    except Exception as e:
-        print("Error, no such document.")
-        print(e)
     return render_template("lineStatus.html", avgTime="4:20", waitedTime="2:00", place=5)
+
+def getPlace(serviceID, customerID):
+    customers = services_list.document(serviceID).to_dict()
+    temp = []
+    for user in customers.keys():
+        customers['id'] = user
+        temp.append(customers[user])
+    temp.sort(key=sortLine)
+    i = 0
+    return 0
+
+def sortLine(a,b):
+
+    return 0
