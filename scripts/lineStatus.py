@@ -11,12 +11,9 @@ from os import environ
 from app import *
 from google.cloud import firestore
 
-
-# Add a new document
-db = firestore.Client()
-
 # Then query for documents
 services_list = db.collection(u'services')
+
 
 @app.route("/status")
 def lineStatus_req():
@@ -26,6 +23,7 @@ def lineStatus_req():
 
     return render_template("lineStatus.html", avgTime="4:20", waitedTime="2:00", place=5)
 
+
 def getPlace(serviceID, customerID):
     customers = services_list.document(serviceID).to_dict()
     temp = []
@@ -34,8 +32,12 @@ def getPlace(serviceID, customerID):
         temp.append(customers[user])
     temp.sort(key=sortLine)
     i = 0
-    return 0
+    for user in temp:
+        if user['id'] == customerID:
+            return i
+        i += 1
+    return -1
 
-def sortLine(a,b):
 
-    return 0
+def sortLine(a, b):
+    return int(a['enqueue_time']) - int(b['enqueue_time'])
