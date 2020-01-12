@@ -33,6 +33,7 @@ protobuf==3.11.2
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.19
+PyJWT==1.7.1
 python-jwt==3.2.5
 pytz==2019.3
 requests==2.22.0
@@ -40,6 +41,7 @@ requests-toolbelt==0.9.1
 rsa==4.0
 six==1.13.0
 sseclient==0.0.24
+twilio==6.35.2
 uritemplate==3.0.1
 urllib3==1.25.7
 Werkzeug==0.16.0
