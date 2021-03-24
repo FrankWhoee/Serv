@@ -38,7 +38,7 @@ python-jwt==3.2.5
 pytz==2019.3
 requests==2.22.0
 requests-toolbelt==0.9.1
-rsa==4.0
+rsa==4.1
 six==1.13.0
 sseclient==0.0.24
 twilio==6.35.2
